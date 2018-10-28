@@ -5,12 +5,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import modelo.Mundo;
 import modelo.Tienda;
 import vista.Ventana;
 
 public class Controlador implements ActionListener {
 	private Ventana vista ;
 	private Tienda tienda;
+	private Mundo mundo;
 	
 	
 	
@@ -19,6 +21,7 @@ public class Controlador implements ActionListener {
 	public Controlador() {
 		vista  = new Ventana(this);
 		tienda = new Tienda();
+		mundo = new Mundo();
 	}
 	
 	
@@ -43,6 +46,7 @@ public class Controlador implements ActionListener {
 		if (comando.equals(vista.ACTUALIZAR_TIENDA)){
 			String nombre = pedirDato("ingrese el nombre de la tienda");
 			tienda.setNombreTienda(nombre);
+			vista.getPanelTienda().getLbNombreTienda().setText(nombre);
 			String tipo = pedirDato("ingrese el tipo de  tienda");
 			tienda.setTipoTienda(tipo);
 			int nittienda = Integer.parseInt(pedirDato("ingrese el NIT de la tienda"));
@@ -62,6 +66,12 @@ public class Controlador implements ActionListener {
 			
 			mensaje(tienda.TiendaActual());
 		}
+		
+		if (comando.equals(vista.ACTUALIZAR_CLIENTE)){
+			
+			
+		}
+		
 		
 		
 		

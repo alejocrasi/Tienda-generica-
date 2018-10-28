@@ -10,16 +10,21 @@ public class PanelClientes extends JPanel {
 	private JButton btnAgregar;
 	private JButton btnActualizar;
 	private JButton btnBorrar;
+	private Ventana vista;
 
-	
-	
-	public  PanelClientes() {
-	
+	public  PanelClientes(Ventana pvista) {
+		vista = pvista;
 		setLayout(new GridLayout (1,3));
 		setBorder(new TitledBorder("Panel Clientes"));
 		
 		btnActualizar = new JButton("btnActualizar");
+		btnActualizar.setActionCommand(vista.ACTUALIZAR_CLIENTE);
+
+		
 		btnAgregar = new JButton("btnAgregar");
+		btnActualizar.setActionCommand(vista.ACTUALIZAR_CLIENTE);
+
+		
 		btnBorrar = new JButton("btnBorrar");
 
 		
@@ -28,5 +33,30 @@ public class PanelClientes extends JPanel {
 		add(btnActualizar);
 		add(btnBorrar);
 	}
+
+	public JButton getBtnAgregar() {
+		return btnAgregar;
+	}
+
+	public void setBtnAgregar(JButton btnAgregar) {
+		this.btnAgregar = btnAgregar;
+	}
+
+	public JButton getBtnActualizar() {
+		return btnActualizar;
+	}
+
+	public void setBtnActualizar(JButton btnActualizar) {
+		this.btnActualizar = btnActualizar;
+	}
+
+	public JButton getBtnBorrar() {
+		return btnBorrar;
+	}
+
+	public void setBtnBorrar(JButton btnBorrar) {
+		this.btnBorrar = btnBorrar;
+	}
+	
 
 }

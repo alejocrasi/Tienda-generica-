@@ -15,6 +15,8 @@ public class Ventana extends JFrame {
 	private Controlador controlador;
 	
 	public final static String ACTUALIZAR_TIENDA = "tienda";
+	public static final String ACTUALIZAR_CLIENTE = "clien";
+
 	
 	public Ventana(Controlador pcontrolador) {
 		controlador =pcontrolador;
@@ -28,9 +30,13 @@ public class Ventana extends JFrame {
 		panelTienda = new PanelTienda(this);
 		panelTienda.getBtnActualizar().addActionListener(controlador);
 		
-		panelClientes = new PanelClientes();
-		panelProveedores = new PanelProveedores();
-		panelProductos = new PanelProductos();
+		panelClientes = new PanelClientes(this);
+		panelClientes.getBtnActualizar().addActionListener(controlador);
+		
+		panelProveedores = new PanelProveedores(this);
+		
+		
+		panelProductos = new PanelProductos(this);
 		
 		add(panelTienda, BorderLayout.NORTH);
 		add(panelClientes, BorderLayout.CENTER);
@@ -40,6 +46,47 @@ public class Ventana extends JFrame {
 		setVisible(true);
 		
 	}
+
+	public Controlador getControlador() {
+		return controlador;
+	}
+
+	public void setControlador(Controlador controlador) {
+		this.controlador = controlador;
+	}
+
+	public PanelClientes getPanelClientes() {
+		return panelClientes;
+	}
+
+	public void setPanelClientes(PanelClientes panelClientes) {
+		this.panelClientes = panelClientes;
+	}
+
+	public PanelTienda getPanelTienda() {
+		return panelTienda;
+	}
+
+	public void setPanelTienda(PanelTienda panelTienda) {
+		this.panelTienda = panelTienda;
+	}
+
+	public PanelProveedores getPanelProveedores() {
+		return panelProveedores;
+	}
+
+	public void setPanelProveedores(PanelProveedores panelProveedores) {
+		this.panelProveedores = panelProveedores;
+	}
+
+	public PanelProductos getPanelProductos() {
+		return panelProductos;
+	}
+
+	public void setPanelProductos(PanelProductos panelProductos) {
+		this.panelProductos = panelProductos;
+	}
+	
 	
 
 }

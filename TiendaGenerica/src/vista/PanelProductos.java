@@ -10,11 +10,12 @@ public class PanelProductos extends JPanel {
 	private JButton btnAgregar;
 	private JButton btnActualizar;
 	private JButton btnBorrar;
+	private Ventana vista;
 
 	
 	
-	public PanelProductos() {
-	
+	public PanelProductos(Ventana pvista) {
+		vista = pvista;
 	
 		setLayout(new GridLayout (1,3));
 		setBorder(new TitledBorder("Panel Productos"));

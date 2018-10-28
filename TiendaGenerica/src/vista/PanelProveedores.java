@@ -10,11 +10,12 @@ public class PanelProveedores extends JPanel {
 	private JButton btnAgregar;
 	private JButton btnActualizar;
 	private JButton btnBorrar;
+	private Ventana vista;
 
 	
 	
-	public  PanelProveedores() {
-	
+	public  PanelProveedores(Ventana pvista) {
+		vista = pvista;
 	
 		setLayout(new GridLayout (1,3));
 		setBorder(new TitledBorder("Panel proveedores"));

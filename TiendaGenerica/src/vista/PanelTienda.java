@@ -19,13 +19,15 @@ public class PanelTienda extends JPanel {
 	
 	public PanelTienda(Ventana pVista) {
 		vista = pVista;
-		setLayout(new GridLayout (1,2));
+		setLayout(new GridLayout (2,1));
 		setBorder(new TitledBorder("Panel Tienda"));
 		
+		
+		lbNombreTienda = new JLabel("NOMBRE GENERICO");
 		btnActualizar = new JButton("btnActualizar");
 		btnActualizar.setActionCommand(vista.ACTUALIZAR_TIENDA);
 		
-		
+		add(lbNombreTienda);
 		add(btnActualizar);
 	}
 

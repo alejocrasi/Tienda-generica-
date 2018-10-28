@@ -29,18 +29,24 @@ public class Tienda {
 	public String TiendaActual() {
 		
 		String linea="";
-		linea= nombreTienda+ "\n\n";
-		linea+="\t tipo de Tienda: " + tipoTienda +"\n";
-		linea+="\t NIT: " + NITtienda +"\n";
-		linea+="\t ciudad: " + ciudad +"\n";
-		linea+="\t tasa de Interes: " + tasaInteres +"\n";
-		linea+="\t IVA: " + IVA +"\n";
-		linea+="\t nombre del Banco: "+nombreBanco+" \n";
-		linea+="\t Cuenta Corriente: "+numCuentaCorriente+ "\n";
-		linea+="\t gerente: "+ gerente + "\n";
+		linea= nombreTienda + "\n\n";
+		linea+="\t tipo de Tienda  : " + tipoTienda +"\n";
+		linea+="\t NIT             : " + NITtienda +"\n";
+		linea+="\t ciudad          : " + ciudad +"\n";
+		linea+="\t tasa de Interes : " + tasaInteres +"\n";
+		linea+="\t IVA             : " + IVA +"\n";
+		linea+="\t nombre del Banco: " + nombreBanco+" \n";
+		linea+="\t Cuenta Corriente: " + numCuentaCorriente+ "\n";
+		linea+="\t gerente         : " + gerente + "\n";
 		
 		return linea;
 	}
+	
+	
+
+	
+	
+	
 	public String getNombreTienda() {
 		return nombreTienda;
 	}
