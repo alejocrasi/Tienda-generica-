@@ -3,32 +3,50 @@ package vista;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 public class PanelTienda extends JPanel {
-	private JButton btnAgregar;
+	
+	private JLabel lbNombreTienda;
 	private JButton btnActualizar;
-	private JButton btnBorrar;
+	private Ventana vista;
+	
 
 	
 	
-	public PanelTienda() {
-		
-		setLayout(new GridLayout (1,3));
+	public PanelTienda(Ventana pVista) {
+		vista = pVista;
+		setLayout(new GridLayout (1,2));
 		setBorder(new TitledBorder("Panel Tienda"));
 		
 		btnActualizar = new JButton("btnActualizar");
-		btnAgregar = new JButton("btnAgregar");
-		btnBorrar = new JButton("btnBorrar");
-
+		btnActualizar.setActionCommand(vista.ACTUALIZAR_TIENDA);
 		
 		
-		add(btnAgregar);
 		add(btnActualizar);
-		add(btnBorrar);
-		
-		
 	}
+
+
+
+
+	public JLabel getLbNombreTienda() {
+		return lbNombreTienda;
+	}
+
+	public void setLbNombreTienda(JLabel lbNombreTienda) {
+		this.lbNombreTienda = lbNombreTienda;
+	}
+
+	public JButton getBtnActualizar() {
+		return btnActualizar;
+	}
+
+	public void setBtnActualizar(JButton btnActualizar) {
+		this.btnActualizar = btnActualizar;
+	}
+	
 
 }
