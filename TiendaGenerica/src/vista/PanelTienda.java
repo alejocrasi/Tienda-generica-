@@ -37,21 +37,29 @@ public class PanelTienda extends JPanel {
 		txttipoTienda = new JTextField("tipo de  tienda");
 		txtNITtienda = new JTextField("NIT de la tienda");
 		txtciudad = new JTextField("Ciudad de la tienda");
-		txtIVA = new JTextField("nombre de la tienda");
-		txttasaInteres = new JTextField("nombre de la tienda");
-		txtnombreBanco = new JTextField("nombre de la tienda");
-		txtnumCuentaCorriente= new JTextField("nombre de la tienda");
-		txtgerente= new JTextField("nombre de la tienda");
+		txtIVA = new JTextField("IVA de la tienda");
+		txttasaInteres = new JTextField("taza de intereses de la tienda");
+		txtnombreBanco = new JTextField("nombre del banco de la tienda");
+		txtnumCuentaCorriente= new JTextField("numero de cuenta corriente de la tienda");
+		txtgerente= new JTextField("nombre del gerente de la tienda");
 
 		
 		lbNombreTienda = new JLabel("INGRESE DATOS DE LA TIENDA");
-		btnActualizar = new JButton("btnActualizar");
+		btnActualizar = new JButton("Actualizar");
 		btnActualizar.setActionCommand(vista.ACTUALIZAR_TIENDA);
 		
 		
 		add(lbNombreTienda);
-		
 		add(txtnombreTienda);
+		add(txttipoTienda);
+		add(txtNITtienda);
+		add(txtciudad);
+		add(txtIVA);
+		add(txttasaInteres);
+		add(txtnombreBanco);
+		add(txtnumCuentaCorriente);
+		add(txtgerente);
+		
 		add(btnActualizar);
 	}
 
@@ -62,17 +70,156 @@ public class PanelTienda extends JPanel {
 		return lbNombreTienda;
 	}
 
+
+
+
 	public void setLbNombreTienda(JLabel lbNombreTienda) {
 		this.lbNombreTienda = lbNombreTienda;
 	}
+
+
+
 
 	public JButton getBtnActualizar() {
 		return btnActualizar;
 	}
 
+
+
+
 	public void setBtnActualizar(JButton btnActualizar) {
 		this.btnActualizar = btnActualizar;
 	}
+
+
+
+
+	public JTextField getTxtnombreTienda() {
+		return txtnombreTienda;
+	}
+
+
+
+
+	public void setTxtnombreTienda(JTextField txtnombreTienda) {
+		this.txtnombreTienda = txtnombreTienda;
+	}
+
+
+
+
+	public JTextField getTxttipoTienda() {
+		return txttipoTienda;
+	}
+
+
+
+
+	public void setTxttipoTienda(JTextField txttipoTienda) {
+		this.txttipoTienda = txttipoTienda;
+	}
+
+
+
+
+	public JTextField getTxtNITtienda() {
+		return txtNITtienda;
+	}
+
+
+
+
+	public void setTxtNITtienda(JTextField txtNITtienda) {
+		this.txtNITtienda = txtNITtienda;
+	}
+
+
+
+
+	public JTextField getTxtciudad() {
+		return txtciudad;
+	}
+
+
+
+
+	public void setTxtciudad(JTextField txtciudad) {
+		this.txtciudad = txtciudad;
+	}
+
+
+
+
+	public JTextField getTxtIVA() {
+		return txtIVA;
+	}
+
+
+
+
+	public void setTxtIVA(JTextField txtIVA) {
+		this.txtIVA = txtIVA;
+	}
+
+
+
+
+	public JTextField getTxttasaInteres() {
+		return txttasaInteres;
+	}
+
+
+
+
+	public void setTxttasaInteres(JTextField txttasaInteres) {
+		this.txttasaInteres = txttasaInteres;
+	}
+
+
+
+
+	public JTextField getTxtnombreBanco() {
+		return txtnombreBanco;
+	}
+
+
+
+
+	public void setTxtnombreBanco(JTextField txtnombreBanco) {
+		this.txtnombreBanco = txtnombreBanco;
+	}
+
+
+
+
+	public JTextField getTxtnumCuentaCorriente() {
+		return txtnumCuentaCorriente;
+	}
+
+
+
+
+	public void setTxtnumCuentaCorriente(JTextField txtnumCuentaCorriente) {
+		this.txtnumCuentaCorriente = txtnumCuentaCorriente;
+	}
+
+
+
+
+	public JTextField getTxtgerente() {
+		return txtgerente;
+	}
+
+
+
+
+	public void setTxtgerente(JTextField txtgerente) {
+		this.txtgerente = txtgerente;
+	}
+
+
+
+
 	
 
 }

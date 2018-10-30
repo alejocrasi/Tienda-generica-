@@ -22,7 +22,7 @@ public class Ventana extends JFrame {
 		controlador =pcontrolador;
 		setTitle("TIENDA GENERICA");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(750,200);
+		setSize(700,700);
 		
 		setLayout(new BorderLayout());
 		
@@ -38,7 +38,7 @@ public class Ventana extends JFrame {
 		
 		panelProductos = new PanelProductos(this);
 		
-		add(panelTienda, BorderLayout.NORTH);
+		add(panelTienda, BorderLayout.WEST);
 		add(panelClientes, BorderLayout.CENTER);
 		add(panelProveedores, BorderLayout.EAST);
 		add(panelProductos, BorderLayout.SOUTH);

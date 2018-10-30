@@ -44,30 +44,34 @@ public class Controlador implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
 		if (comando.equals(vista.ACTUALIZAR_TIENDA)){
-			String nombre = pedirDato("ingrese el nombre de la tienda");
+			String nombre = vista.getPanelTienda().getTxtnombreTienda().getText();
 			tienda.setNombreTienda(nombre);
-			vista.getPanelTienda().getLbNombreTienda().setText(nombre);
-			String tipo = pedirDato("ingrese el tipo de  tienda");
+			String tipo = vista.getPanelTienda().getTxttipoTienda().getText();
 			tienda.setTipoTienda(tipo);
-			int nittienda = Integer.parseInt(pedirDato("ingrese el NIT de la tienda"));
+			int nittienda = Integer.parseInt(vista.getPanelTienda().getTxtNITtienda().getText());
 			tienda.setNITtienda(nittienda);
-			String city = pedirDato("ingrese la ciudad de la tienda");
+			String city = vista.getPanelTienda().getTxtciudad().getText();
 			tienda.setCiudad(city);
-			int iva = Integer.parseInt(pedirDato("ingrese el IVA de la tienda"));
-			tienda.setIVA(iva);
-			int tasainteres = Integer.parseInt(pedirDato("ingrese la tasa de interes de la tienda"));
+			int iva = Integer.parseInt(vista.getPanelTienda().getTxtIVA().getText());
+			tienda.setIVA(iva); 
+			int tasainteres = Integer.parseInt(vista.getPanelTienda().getTxttasaInteres().getText());
 			tienda.setTasaInteres(tasainteres);
-			String nomBanco = pedirDato("ingrese el nombre del banco de la tienda");
+			String nomBanco = vista.getPanelTienda().getTxtnombreBanco().getText();
 			tienda.setNombreBanco(nomBanco);
-			int numCuenta = Integer.parseInt(pedirDato("ingrese el numero de cuenta corriente de la tienda"));
+			int numCuenta = Integer.parseInt(vista.getPanelTienda().getTxtnumCuentaCorriente().getText());
 			tienda.setNumCuentaCorriente(numCuenta);
-			String gerente = pedirDato("ingrese el gerente de la tienda");
+			String gerente = vista.getPanelTienda().getTxtgerente().getText();
 			tienda.setGerente(gerente);
 			
 			mensaje(tienda.TiendaActual());
+
+			
 		}
 		
 		if (comando.equals(vista.ACTUALIZAR_CLIENTE)){
+			
+			
+
 			
 			
 		}
