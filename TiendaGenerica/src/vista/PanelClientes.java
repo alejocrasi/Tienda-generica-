@@ -23,24 +23,43 @@ public class PanelClientes extends JPanel {
 
 	public  PanelClientes(Ventana pvista) {
 		vista = pvista;
-		setLayout(new GridLayout (1,3));
-		setBorder(new TitledBorder("Panel  Clientes"));
+		setLayout(new GridLayout (9,1));
+		setBorder(new TitledBorder("Clientes"));
 		
-		btnActualizar = new JButton("btnActualizar");
+		btnActualizar = new JButton("Actualizar");
 		btnActualizar.setActionCommand(vista.ACTUALIZAR_CLIENTE);
 
 		
-		btnAgregar = new JButton("btnAgregar");
-		btnActualizar.setActionCommand(vista.ACTUALIZAR_CLIENTE);
-
+		btnAgregar = new JButton("Agregar");
+		btnAgregar.setActionCommand(vista.AGREGAR_CLIENTE);
 		
-		btnBorrar = new JButton("btnBorrar");
+		btnBorrar = new JButton("Borrar");
+		btnBorrar.setActionCommand(vista.BORRAR_CLIENTE);
+		
+		btnLeer = new JButton("leer");
+		btnLeer.setActionCommand(vista.LEER_CLIENTE);
+		
+		
+		txtnombre = new JTextField("nombre del cliente");
+		txtcedula = new JTextField("cedula del cliente");
+		txtdireccion = new JTextField("direccion del cliente");
+		txttelefono = new JTextField("telefono del cliente");
+		txtcorreo = new JTextField("correo del cliente");
+		
+		add(txtnombre);
+		add(txtcedula);
+		add(txtdireccion);
+		add(txttelefono);
+		add(txtcorreo);
+
+
 
 		
 		
 		add(btnAgregar);
 		add(btnActualizar);
 		add(btnBorrar);
+		add(btnLeer);
 	}
 
 	public JButton getBtnAgregar() {
@@ -59,6 +78,14 @@ public class PanelClientes extends JPanel {
 		this.btnActualizar = btnActualizar;
 	}
 
+	public JButton getBtnLeer() {
+		return btnLeer;
+	}
+
+	public void setBtnLeer(JButton btnLeer) {
+		this.btnLeer = btnLeer;
+	}
+
 	public JButton getBtnBorrar() {
 		return btnBorrar;
 	}
@@ -66,6 +93,46 @@ public class PanelClientes extends JPanel {
 	public void setBtnBorrar(JButton btnBorrar) {
 		this.btnBorrar = btnBorrar;
 	}
-	
 
+	public JTextField getTxtnombre() {
+		return txtnombre;
+	}
+
+	public void setTxtnombre(JTextField txtnombre) {
+		this.txtnombre = txtnombre;
+	}
+
+	public JTextField getTxtcedula() {
+		return txtcedula;
+	}
+
+	public void setTxtcedula(JTextField txtcedula) {
+		this.txtcedula = txtcedula;
+	}
+
+	public JTextField getTxtdireccion() {
+		return txtdireccion;
+	}
+
+	public void setTxtdireccion(JTextField txtdireccion) {
+		this.txtdireccion = txtdireccion;
+	}
+
+	public JTextField getTxttelefono() {
+		return txttelefono;
+	}
+
+	public void setTxttelefono(JTextField txttelefono) {
+		this.txttelefono = txttelefono;
+	}
+
+	public JTextField getTxtcorreo() {
+		return txtcorreo;
+	}
+
+	public void setTxtcorreo(JTextField txtcorreo) {
+		this.txtcorreo = txtcorreo;
+	}
+
+	
 }

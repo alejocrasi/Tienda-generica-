@@ -30,7 +30,7 @@ public class PanelTienda extends JPanel {
 	
 	public PanelTienda(Ventana pVista) {
 		vista = pVista;
-		setLayout(new GridLayout (11,1));
+		setLayout(new GridLayout (10,1));
 		setBorder(new TitledBorder("Tienda"));
 		
 		txtnombreTienda = new JTextField("nombre de la tienda");
@@ -49,7 +49,6 @@ public class PanelTienda extends JPanel {
 		btnActualizar.setActionCommand(vista.ACTUALIZAR_TIENDA);
 		
 		
-		add(lbNombreTienda);
 		add(txtnombreTienda);
 		add(txttipoTienda);
 		add(txtNITtienda);

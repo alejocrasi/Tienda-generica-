@@ -68,7 +68,23 @@ public class Controlador implements ActionListener {
 			
 		}
 		
-		if (comando.equals(vista.ACTUALIZAR_CLIENTE)){
+		if (comando.equals(vista.AGREGAR_CLIENTE)){
+			String nombre = vista.getPanelClientes().getTxtnombre().getText();
+			int cedu = Integer.parseInt(vista.getPanelClientes().getTxtcedula().getText());
+			String direc = vista.getPanelClientes().getTxtdireccion().getText();
+			int tel = Integer.parseInt(vista.getPanelClientes().getTxttelefono().getText());
+			String correo = vista.getPanelClientes().getTxtcorreo().getText();
+			
+			boolean rta =mundo.agregarCliente(nombre, cedu, direc, tel, correo);
+			
+			if (rta == true)
+				mensaje("su cliente fue agregado");
+			else
+				mensaje("ERROR");
+			
+
+
+			
 			
 			
 

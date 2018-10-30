@@ -16,13 +16,17 @@ public class Ventana extends JFrame {
 	
 	public final static String ACTUALIZAR_TIENDA = "tienda";
 	public static final String ACTUALIZAR_CLIENTE = "clien";
+	public static final String AGREGAR_CLIENTE = "clienagre";
+	public static final String BORRAR_CLIENTE = "clienboorr";
+	public static final String LEER_CLIENTE = "clienleeer";
+
 
 	
 	public Ventana(Controlador pcontrolador) {
 		controlador =pcontrolador;
 		setTitle("TIENDA GENERICA");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(700,700);
+		setSize(1000,500);
 		
 		setLayout(new BorderLayout());
 		
@@ -31,7 +35,10 @@ public class Ventana extends JFrame {
 		panelTienda.getBtnActualizar().addActionListener(controlador);
 		
 		panelClientes = new PanelClientes(this);
+		panelClientes.getBtnAgregar().addActionListener(controlador);
+		panelClientes.getBtnBorrar().addActionListener(controlador);
 		panelClientes.getBtnActualizar().addActionListener(controlador);
+		panelClientes.getBtnLeer().addActionListener(controlador);
 		
 		panelProveedores = new PanelProveedores(this);
 		
