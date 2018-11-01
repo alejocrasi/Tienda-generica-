@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+import org.omg.CORBA.PolicyHolder;
+
 public class PanelClientes extends JPanel {
 	private JButton btnAgregar;
 	private JButton btnActualizar;

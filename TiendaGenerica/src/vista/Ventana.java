@@ -1,7 +1,7 @@
 package vista;
 
 import java.awt.BorderLayout;
-
+import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 
@@ -19,6 +19,20 @@ public class Ventana extends JFrame {
 	public static final String AGREGAR_CLIENTE = "clienagre";
 	public static final String BORRAR_CLIENTE = "clienboorr";
 	public static final String LEER_CLIENTE = "clienleeer";
+	
+	public static final String ACTUALIZAR_PROVEEDOR = "clien";
+	public static final String AGREGAR_PROVEEDOR = "aergaerg";
+	public static final String BORRAR_PROVEEDOR = "1";
+	public static final String LEER_PROVEEDOR = "2";
+	
+	public static final String ACTUALIZAR_PRODUCTO = "3";
+	public static final String AGREGAR_PRODUCTO = "4";
+	public static final String BORRAR_PRODUCTO = "5";
+	public static final String LEER_PRODUCTO = "6";
+	
+	
+	
+	
 
 
 	
@@ -29,7 +43,7 @@ public class Ventana extends JFrame {
 		setSize(1000,500);
 		
 		setLayout(new BorderLayout());
-		
+		setLayout(new GridLayout (1,4));
 		
 		panelTienda = new PanelTienda(this);
 		panelTienda.getBtnActualizar().addActionListener(controlador);
@@ -41,14 +55,24 @@ public class Ventana extends JFrame {
 		panelClientes.getBtnLeer().addActionListener(controlador);
 		
 		panelProveedores = new PanelProveedores(this);
+		panelProveedores.getBtnAgregar().addActionListener(controlador);
+		panelProveedores.getBtnBorrar().addActionListener(controlador);
+		panelProveedores.getBtnActualizar().addActionListener(controlador);
+		panelProveedores.getBtnLeer().addActionListener(controlador);
 		
 		
 		panelProductos = new PanelProductos(this);
+		panelProductos.getBtnAgregar().addActionListener(controlador);
+		panelProductos.getBtnBorrar().addActionListener(controlador);
+		panelProductos.getBtnActualizar().addActionListener(controlador);
+		panelProductos.getBtnLeer().addActionListener(controlador);
 		
-		add(panelTienda, BorderLayout.WEST);
-		add(panelClientes, BorderLayout.CENTER);
-		add(panelProveedores, BorderLayout.EAST);
-		add(panelProductos, BorderLayout.SOUTH);
+		
+		
+		add(panelTienda);
+		add(panelClientes);
+		add(panelProveedores);
+		add(panelProductos);
 		
 		setVisible(true);
 		

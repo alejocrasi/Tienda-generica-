@@ -81,13 +81,26 @@ public class Controlador implements ActionListener {
 				mensaje("su cliente fue agregado");
 			else
 				mensaje("ERROR");
+
+		}
+		if(comando.equals(vista.AGREGAR_PROVEEDOR)) {
+			int NIT = Integer.parseInt(vista.getPanelProveedores().getTxtNIT().getText());
+			String nombre = vista.getPanelProveedores().getTxtnombreProveedor().getText();
+			String direccion = vista.getPanelProveedores().getTxtdireccion().getText();
+			int telefono = Integer.parseInt(vista.getPanelProveedores().getTxttelefono().getText());
+			String ciudad = vista.getPanelProveedores().getTxtciudad().getText();
+			
+			boolean rta = mundo.agregarProveedor(NIT, nombre, direccion, telefono, ciudad);
+			
+			if (rta == true)
+				mensaje("su Proveedor fue agregado");
+			else
+				mensaje("ERROR");
+			
 			
 
-
 			
 			
-			
-
 			
 			
 		}
