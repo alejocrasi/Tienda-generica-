@@ -21,7 +21,7 @@ public class Proveedor {
 	public Proveedor(int nIT, String nombreProveedor, String direccion, int telefono, String ciudad) {
 		
 		NIT = nIT;
-		this.nombreProveedor = nombreProveedor;
+		this.nombreProveedor =nombreProveedor;
 		this.direccion = direccion;
 		this.telefono = telefono;
 		this.ciudad = ciudad;
