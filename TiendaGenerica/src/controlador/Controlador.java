@@ -43,6 +43,13 @@ public class Controlador implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
+		
+		
+		if (e.getSource()==vista.getCliente()) {
+        	vista.add(vista.getPanelClientes());
+            
+        }
+        
 		if (comando.equals(vista.ACTUALIZAR_TIENDA)){
 			String nombre = vista.getPanelTienda().getTxtnombreTienda().getText();
 			tienda.setNombreTienda(nombre);

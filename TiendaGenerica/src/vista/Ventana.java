@@ -4,7 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 import controlador.Controlador;
 
@@ -14,8 +16,12 @@ public class Ventana extends JFrame {
 	private PanelProveedores panelProveedores;
 	private PanelProductos panelProductos ;
 	private Controlador controlador;
-	private JMenuBar menuBar;
-	
+	private JMenuBar menu;
+    private JMenu paneles;
+    private JMenuItem tienda,proveedor,producto,cliente;
+    
+       
+           
 	
 	public final static String ACTUALIZAR_TIENDA = "tienda";
 	public static final String ACTUALIZAR_CLIENTE = "clien";
@@ -47,7 +53,27 @@ public class Ventana extends JFrame {
 		
 		setLayout(new GridLayout (1,4));
 		
-		menuBar = new  JMenuBar();
+		
+		menu=new JMenuBar();
+        setJMenuBar(menu);
+        paneles=new JMenu("Opciones");
+        menu.add(paneles);
+        
+        tienda=new JMenuItem("tienda");
+        tienda.addActionListener(controlador);
+        paneles.add(tienda);
+        
+        proveedor=new JMenuItem("proveedor");       
+        paneles.add(proveedor);
+        proveedor.addActionListener(controlador);
+
+        producto=new JMenuItem("producto");
+        paneles.add(producto); 
+        producto.addActionListener(controlador);
+
+        cliente=new JMenuItem("cliente");
+        paneles.add(cliente); 
+        cliente.addActionListener(controlador);
 		
 		panelTienda = new PanelTienda(this);
 		panelTienda.getBtnActualizar().addActionListener(controlador);
@@ -79,6 +105,54 @@ public class Ventana extends JFrame {
 		
 		setVisible(true);
 		
+	}
+
+	public JMenuBar getMenu() {
+		return menu;
+	}
+
+	public void setMenu(JMenuBar menu) {
+		this.menu = menu;
+	}
+
+	public JMenu getPaneles() {
+		return paneles;
+	}
+
+	public void setPaneles(JMenu paneles) {
+		this.paneles = paneles;
+	}
+
+	public JMenuItem getTienda() {
+		return tienda;
+	}
+
+	public void setTienda(JMenuItem tienda) {
+		this.tienda = tienda;
+	}
+
+	public JMenuItem getProveedor() {
+		return proveedor;
+	}
+
+	public void setProveedor(JMenuItem proveedor) {
+		this.proveedor = proveedor;
+	}
+
+	public JMenuItem getProducto() {
+		return producto;
+	}
+
+	public void setProducto(JMenuItem producto) {
+		this.producto = producto;
+	}
+
+	public JMenuItem getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(JMenuItem cliente) {
+		this.cliente = cliente;
 	}
 
 	public Controlador getControlador() {
