@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 
 import controlador.Controlador;
 
@@ -13,6 +14,8 @@ public class Ventana extends JFrame {
 	private PanelProveedores panelProveedores;
 	private PanelProductos panelProductos ;
 	private Controlador controlador;
+	private JMenuBar menuBar;
+	
 	
 	public final static String ACTUALIZAR_TIENDA = "tienda";
 	public static final String ACTUALIZAR_CLIENTE = "clien";
@@ -42,8 +45,9 @@ public class Ventana extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(1000,500);
 		
-		setLayout(new BorderLayout());
 		setLayout(new GridLayout (1,4));
+		
+		menuBar = new  JMenuBar();
 		
 		panelTienda = new PanelTienda(this);
 		panelTienda.getBtnActualizar().addActionListener(controlador);
