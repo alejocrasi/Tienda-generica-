@@ -56,7 +56,6 @@ public class Ventana extends JFrame {
 		panelClientes.getBtnAgregar().addActionListener(controlador);
 		panelClientes.getBtnBorrar().addActionListener(controlador);
 		panelClientes.getBtnActualizar().addActionListener(controlador);
-		panelClientes.getBtnLeer().addActionListener(controlador);
 		
 		panelProveedores = new PanelProveedores(this);
 		panelProveedores.getBtnAgregar().addActionListener(controlador);
