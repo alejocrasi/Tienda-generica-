@@ -60,9 +60,9 @@ public class Ventana extends JFrame {
 		
 		
 		  
-		JLabel label = new JLabel("some text");
-		label.setIcon( new ImageIcon("dato/tienda.png"));
-		
+		JLabel label = new JLabel();
+		label.setIcon( new ImageIcon("C:/Users/alejo/git/Tienda-generica-/TiendaGenerica/dato/tienda.jpg"));
+		add(label, BorderLayout.WEST);
 		
 		btnSalir = new JButton("salir");
 		btnSalir.addActionListener(controlador);
@@ -114,9 +114,7 @@ public class Ventana extends JFrame {
 		
 		add(btnSalir,BorderLayout.SOUTH);
 		
-		
-			
-			setVisible(true);
+		setVisible(true);
 		
 		
 		

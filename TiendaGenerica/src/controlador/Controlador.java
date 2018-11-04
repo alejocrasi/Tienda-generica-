@@ -50,29 +50,47 @@ public class Controlador implements ActionListener {
 		
 		if(comando.equals("salir")){
 			vista.setVisible(false);
+			vista.dispose();
+			
 		}
 		
 		
 		if (e.getSource()==vista.getCliente()) {
 			
 			vista.add(vista.getPanelClientes());
+			vista.getPanelClientes().setVisible(true);
+			vista.getPanelTienda().setVisible(false);
+			vista.getPanelProductos().setVisible(false);
+			vista.getPanelProveedores().setVisible(false);
         	vista.setVisible(true);
+        	
+        	
             
         }
 		if (e.getSource()==vista.getTienda()) {
         	vista.add(vista.getPanelTienda());
+        	vista.getPanelTienda().setVisible(true);
+        	vista.getPanelClientes().setVisible(false);
+			vista.getPanelProductos().setVisible(false);
+			vista.getPanelProveedores().setVisible(false);
         	vista.setVisible(true);
-            
+
         }
 		if (e.getSource()==vista.getProducto()) {
         	vista.add(vista.getPanelProductos());
+        	vista.getPanelProductos().setVisible(true);
+        	vista.getPanelClientes().setVisible(false);
+			vista.getPanelTienda().setVisible(false);
+			vista.getPanelProveedores().setVisible(false);
         	vista.setVisible(true);
-            
         }
 		if (e.getSource()==vista.getProveedor()) {
         	vista.add(vista.getPanelProveedores());
+        	vista.getPanelProveedores().setVisible(true);
+        	vista.getPanelClientes().setVisible(false);
+			vista.getPanelTienda().setVisible(false);
+			vista.getPanelProductos().setVisible(false);
         	vista.setVisible(true);
-            
         }
         
 		if (comando.equals(vista.ACTUALIZAR_TIENDA)){
@@ -112,9 +130,8 @@ public class Controlador implements ActionListener {
 			
 			if (rta == true){
 				mensaje("su cliente fue agregado");
-				vista.remove(vista.getPanelClientes());
 				
-				vista.pack();
+				
 				
 				
 				
