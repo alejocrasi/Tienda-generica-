@@ -3,7 +3,11 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
+import javax.print.DocFlavor.URL;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -19,25 +23,26 @@ public class Ventana extends JFrame {
 	private JMenuBar menu;
     private JMenu paneles;
     private JMenuItem tienda,proveedor,producto,cliente;
-    
+    private JButton btnSalir;
+    private JLabel lbImagen;
        
            
 	
-	public final static String ACTUALIZAR_TIENDA = "tienda";
-	public static final String ACTUALIZAR_CLIENTE = "clien";
-	public static final String AGREGAR_CLIENTE = "clienagre";
-	public static final String BORRAR_CLIENTE = "clienboorr";
+	public final static String ACTUALIZAR_TIENDA = "tieergnda";
+	public static final String ACTUALIZAR_CLIENTE = "clisfbegn";
+	public static final String AGREGAR_CLIENTE = "clieertnagre";
+	public static final String BORRAR_CLIENTE = "clienerboorr";
 	public static final String LEER_CLIENTE = "clienleeer";
 	
-	public static final String ACTUALIZAR_PROVEEDOR = "clien";
-	public static final String AGREGAR_PROVEEDOR = "aergaerg";
-	public static final String BORRAR_PROVEEDOR = "1";
-	public static final String LEER_PROVEEDOR = "2";
+	public static final String ACTUALIZAR_PROVEEDOR = "cl35tien";
+	public static final String AGREGAR_PROVEEDOR = "aergertaerg";
+	public static final String BORRAR_PROVEEDOR = "1ert";
+	public static final String LEER_PROVEEDOR = "2ert";
 	
-	public static final String ACTUALIZAR_PRODUCTO = "3";
-	public static final String AGREGAR_PRODUCTO = "4";
-	public static final String BORRAR_PRODUCTO = "5";
-	public static final String LEER_PRODUCTO = "6";
+	public static final String ACTUALIZAR_PRODUCTO = "3ert";
+	public static final String AGREGAR_PRODUCTO = "4ert";
+	public static final String BORRAR_PRODUCTO = "245";
+	public static final String LEER_PRODUCTO = "6wrf";
 	
 	
 	
@@ -51,8 +56,17 @@ public class Ventana extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(1000,500);
 		
-		setLayout(new GridLayout (1,4));
+		setLayout(new BorderLayout());
 		
+		
+		  
+		JLabel label = new JLabel("some text");
+		label.setIcon( new ImageIcon("dato/tienda.png"));
+		
+		
+		btnSalir = new JButton("salir");
+		btnSalir.addActionListener(controlador);
+		btnSalir.setActionCommand("salir");
 		
 		menu=new JMenuBar();
         setJMenuBar(menu);
@@ -98,12 +112,13 @@ public class Ventana extends JFrame {
 		
 		
 		
-		add(panelTienda);
-		add(panelClientes);
-		add(panelProveedores);
-		add(panelProductos);
+		add(btnSalir,BorderLayout.SOUTH);
 		
-		setVisible(true);
+		
+			
+			setVisible(true);
+		
+		
 		
 	}
 

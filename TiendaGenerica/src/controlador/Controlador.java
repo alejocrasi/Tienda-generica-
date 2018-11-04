@@ -22,6 +22,9 @@ public class Controlador implements ActionListener {
 		vista  = new Ventana(this);
 		tienda = new Tienda();
 		mundo = new Mundo();
+		
+		vista.setVisible(true);
+
 	}
 	
 	
@@ -40,13 +43,35 @@ public class Controlador implements ActionListener {
 	
 	
 	
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
 		
+		if(comando.equals("salir")){
+			vista.setVisible(false);
+		}
+		
 		
 		if (e.getSource()==vista.getCliente()) {
-        	vista.add(vista.getPanelClientes());
+			
+			vista.add(vista.getPanelClientes());
+        	vista.setVisible(true);
+            
+        }
+		if (e.getSource()==vista.getTienda()) {
+        	vista.add(vista.getPanelTienda());
+        	vista.setVisible(true);
+            
+        }
+		if (e.getSource()==vista.getProducto()) {
+        	vista.add(vista.getPanelProductos());
+        	vista.setVisible(true);
+            
+        }
+		if (e.getSource()==vista.getProveedor()) {
+        	vista.add(vista.getPanelProveedores());
+        	vista.setVisible(true);
             
         }
         
@@ -71,6 +96,7 @@ public class Controlador implements ActionListener {
 			tienda.setGerente(gerente);
 			
 			mensaje(tienda.TiendaActual());
+			
 
 			
 		}
@@ -84,8 +110,15 @@ public class Controlador implements ActionListener {
 			
 			boolean rta =mundo.agregarCliente(nombre, cedu, direc, tel, correo);
 			
-			if (rta == true)
+			if (rta == true){
 				mensaje("su cliente fue agregado");
+				vista.remove(vista.getPanelClientes());
+				
+				vista.pack();
+				
+				
+				
+			}
 			else
 				mensaje("ERROR");
 
@@ -99,8 +132,10 @@ public class Controlador implements ActionListener {
 			
 			boolean rta = mundo.agregarProveedor(NIT, nombre, direccion, telefono, ciudad);
 			
-			if (rta == true)
+			if (rta == true){
 				mensaje("su Proveedor fue agregado");
+				
+			}
 			else
 				mensaje("ERROR");
 			
