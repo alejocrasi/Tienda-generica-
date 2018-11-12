@@ -1,7 +1,15 @@
 package vista;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Panel;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,7 +19,6 @@ import javax.swing.border.TitledBorder;
 
 public class PanelTienda extends JPanel {
 	
-	private JLabel lbNombreTienda;
 	private JButton btnActualizar;
 	private JTextField  txtnombreTienda;
 	private JTextField  txttipoTienda;
@@ -22,60 +29,117 @@ public class PanelTienda extends JPanel {
 	private JTextField  txtnombreBanco;
 	private JTextField  txtnumCuentaCorriente;
 	private JTextField  txtgerente;
+	private JLabel  lbnombreTienda;
+	private JLabel  lbtipoTienda;
+	private JLabel  lbNITtienda;
+	private JLabel  lbciudad;
+	private JLabel  lbIVA;
+	private JLabel  lbtasaInteres;
+	private JLabel  lbnombreBanco;
+	private JLabel  lbnumCuentaCorriente;
+	private JLabel  lbgerente;
 
 	private Ventana vista;
 	 
 
 	
 	
+
 	public PanelTienda(Ventana pVista) {
 		vista = pVista;
-		setLayout(new GridLayout (10,1));
+		
+		setLayout(null);
+		
+		
+		
+		
 		setBorder(new TitledBorder("Tienda"));
 		
-		txtnombreTienda = new JTextField("nombre de la tienda");
-		txttipoTienda = new JTextField("tipo de  tienda");
-		txtNITtienda = new JTextField("NIT de la tienda");
-		txtciudad = new JTextField("Ciudad de la tienda");
-		txtIVA = new JTextField("IVA de la tienda");
-		txttasaInteres = new JTextField("taza de intereses de la tienda");
-		txtnombreBanco = new JTextField("nombre del banco de la tienda");
-		txtnumCuentaCorriente= new JTextField("numero de cuenta corriente de la tienda");
-		txtgerente= new JTextField("nombre del gerente de la tienda");
+		txtnombreTienda = new JTextField(30);
+		txttipoTienda = new JTextField(30);
+		txtNITtienda = new JTextField(30);
+		txtciudad = new JTextField(30);
+		txtIVA = new JTextField(30);
+		txttasaInteres = new JTextField(30);
+		txtnombreBanco = new JTextField(30);
+		txtnumCuentaCorriente= new JTextField(30);
+		txtgerente= new JTextField(30);
+		
+		lbnombreTienda = new JLabel("Nombre:");
+		lbtipoTienda = new JLabel("tipo:");
+		lbNITtienda = new JLabel("NIT:");
+		lbciudad = new JLabel("Ciudad:");
+		lbIVA = new JLabel("IVA :");
+		lbtasaInteres = new JLabel("taza de intereses :");
+		lbnombreBanco = new JLabel("nombre del banco :");
+		lbnumCuentaCorriente= new JLabel("numero de cuenta: ");
+		lbgerente= new JLabel("nombre del gerente :");
+
 
 		
-		lbNombreTienda = new JLabel("INGRESE DATOS DE LA TIENDA");
 		btnActualizar = new JButton("Actualizar");
 		btnActualizar.setActionCommand(vista.ACTUALIZAR_TIENDA);
 		
 		
+		int y = 30;
+		int x = 10;
+	
+		add(lbnombreTienda);
+		lbnombreTienda.setBounds(x, y, 120, 20);
 		add(txtnombreTienda);
-		add(txttipoTienda);
-		add(txtNITtienda);
-		add(txtciudad);
-		add(txtIVA);
-		add(txttasaInteres);
-		add(txtnombreBanco);
-		add(txtnumCuentaCorriente);
-		add(txtgerente);
+		txtnombreTienda.setBounds(x*7, y, 380, 20);
 		
+		add(lbtipoTienda);
+		lbtipoTienda.setBounds(x, y*2, 120, 20);
+		add(txttipoTienda);
+		txttipoTienda.setBounds(x*7, y*2, 380, 20);
+		
+		add(lbNITtienda);
+		lbNITtienda.setBounds(x, y*3, 120, 20);
+		add(txtNITtienda);
+		txtNITtienda.setBounds(x*7, y*3, 380, 20);
+
+		add(lbciudad);
+		lbciudad.setBounds(x, y*4, 120, 20);
+		add(txtciudad);
+		txtciudad.setBounds(x*7, y*4, 380, 20);
+
+		add(lbIVA);
+		lbIVA.setBounds(x, y*5, 120, 20);
+		add(txtIVA);
+		txtIVA.setBounds(x*7, y*5, 380, 20);
+
+		add(lbtasaInteres);
+		lbtasaInteres.setBounds(x, y*6, 120, 20);
+		add(txttasaInteres);
+		txttasaInteres.setBounds(x*12, y*6, 330, 20);
+
+		add(lbnombreBanco);
+		lbnombreBanco.setBounds(x, y*7, 120, 20);
+		add(txtnombreBanco);
+		txtnombreBanco.setBounds(x*12, y*7, 330, 20);
+
+		add(lbnumCuentaCorriente);
+		lbnumCuentaCorriente.setBounds(x, y*8, 120, 20);
+		add(txtnumCuentaCorriente);
+		txtnumCuentaCorriente.setBounds(x*12, y*8, 330, 20);
+		
+		add(lbgerente);
+		lbgerente.setBounds(x, y*9, 120, 20);
+		add(txtgerente);
+		txtgerente.setBounds(x*13, y*9, 320, 20);
+		
+		
+		btnActualizar.setBounds(x, y*10 ,100, 100);
 		add(btnActualizar);
+		
+		;
 	}
 
 
 
 
-	public JLabel getLbNombreTienda() {
-		return lbNombreTienda;
-	}
-
-
-
-
-	public void setLbNombreTienda(JLabel lbNombreTienda) {
-		this.lbNombreTienda = lbNombreTienda;
-	}
-
+	
 
 
 

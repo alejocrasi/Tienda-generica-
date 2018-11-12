@@ -1,8 +1,12 @@
 package vista;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
@@ -18,6 +22,14 @@ public class PanelProveedores extends JPanel {
 	private JTextField  txtdireccion;
 	private JTextField  txttelefono;
 	private JTextField  txtciudad;
+	
+	private JLabel  lbNIT;
+	private JLabel  lbnombreProveedor;
+	private JLabel  lbdireccion;
+	private JLabel  lbtelefono;
+	private JLabel  lbciudad;
+	
+
 
 	private Ventana vista;
 
@@ -26,7 +38,7 @@ public class PanelProveedores extends JPanel {
 	public  PanelProveedores(Ventana pvista) {
 		vista = pvista;
 	
-		setLayout(new GridLayout (9,1));
+		setLayout(null);
 		setBorder(new TitledBorder("Panel proveedores"));
 		
 		btnActualizar = new JButton("Actualizar");
@@ -47,18 +59,56 @@ public class PanelProveedores extends JPanel {
 		txtdireccion = new JTextField("direccion del proveedor");
 		txttelefono = new JTextField("telefono del proveedor");
 		txtciudad= new JTextField("ciudad del proveedor");
-
 		
+		lbNIT = new JLabel("NIT :");
+		lbnombreProveedor = new JLabel("nombre :");
+		lbdireccion = new JLabel("direccion:");
+		lbtelefono = new JLabel("telefono :");
+		lbciudad= new JLabel("ciudad :");
+		
+		int y = 30;
+		int x = 10;
+		
+		JLabel label = new JLabel();
+		label.setIcon( new ImageIcon("./dato/icono_proveedores.png"));
+		add(label);
+		label.setBounds(x*37, y, 130, 130);
+		
+		
+		add(lbNIT);
+		lbNIT.setBounds(x, y, 120, 20);
 		add(txtNIT);
-		add(txtnombreProveedor);
-		add(txtdireccion);
-		add(txttelefono);
-		add(txtciudad);
+		txtNIT.setBounds(x*4, y, 320, 20);
 		
-		add(btnAgregar);
-		add(btnActualizar);
-		add(btnBorrar);
-		add(btnLeer);
+		
+		add(lbnombreProveedor);
+		lbnombreProveedor.setBounds(x, y*2, 120, 20);
+		add(txtnombreProveedor);
+		txtnombreProveedor.setBounds(x*7, y*2, 290, 20);
+		
+		add(lbdireccion);
+		lbdireccion.setBounds(x, y*3, 120, 20);
+		add(txtdireccion);
+		txtdireccion.setBounds(x*7, y*3,290, 20);
+		
+		add(lbtelefono);
+		lbtelefono.setBounds(x, y*4, 120, 20);
+		add(txttelefono);
+		txttelefono.setBounds(x*7, y*4,290, 20);
+
+		add(lbciudad);
+		lbciudad.setBounds(x, y*5, 120, 20);
+		add(txtciudad);
+		txtciudad.setBounds(x*7, y*5,290, 20);
+		
+		JPanel boton = new JPanel();
+		boton.setBounds(x, y*6,490, 50);
+		add(boton);
+		
+		boton.add(btnAgregar);
+		boton.add(btnActualizar);
+		boton.add(btnBorrar);
+		boton.add(btnLeer);
 	}
 
 

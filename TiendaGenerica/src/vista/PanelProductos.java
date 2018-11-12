@@ -2,7 +2,9 @@ package vista;
 
 import java.awt.GridLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
@@ -19,6 +21,12 @@ public class PanelProductos extends JPanel {
 	private JTextField  txtPrecioCompraProducto;
 	private JTextField  txtPrecioVentaProducto;
 	
+	private JLabel  lbnombreProducto;
+	private JLabel  lbcodigoProducto;
+	private JLabel  lbNITProveedor;
+	private JLabel  lbPrecioCompraProducto;
+	private JLabel  lbPrecioVentaProducto;
+	
 	
 
 	
@@ -29,7 +37,7 @@ public class PanelProductos extends JPanel {
 	public PanelProductos(Ventana pvista) {
 		vista = pvista;
 	
-		setLayout(new GridLayout (9,1));
+		setLayout(null);
 		setBorder(new TitledBorder("Panel Productos"));
 		
 		btnActualizar = new JButton("Actualizar");
@@ -52,20 +60,59 @@ public class PanelProductos extends JPanel {
 		txtNITProveedor = new JTextField("NIT de proveedor ");
 		txtPrecioCompraProducto = new JTextField("precio de compra");
 		txtPrecioVentaProducto = new JTextField("precio de venta");
+		
+		lbnombreProducto = new JLabel("código:");
+		lbcodigoProducto = new JLabel("nombre :");
+		lbNITProveedor = new JLabel("NIT : ");
+		lbPrecioCompraProducto = new JLabel("precio de compra:");
+		lbPrecioVentaProducto = new JLabel("precio de venta:");
 
+
+		int y = 30;
+		int x = 10;
 		
 		
 		
+		
+		add(lbnombreProducto);
+		lbnombreProducto.setBounds(x, y, 120, 20);
 		add(txtnombreProducto);
-		add(txtcodigoProducto);
-		add(txtNITProveedor);
-		add(txtPrecioCompraProducto);
-		add(txtPrecioVentaProducto);
+		txtnombreProducto.setBounds(x*7, y, 290, 20);
 		
-		add(btnAgregar);
-		add(btnActualizar);
-		add(btnBorrar);
-		add(btnLeer);
+		add(lbcodigoProducto);
+		lbcodigoProducto.setBounds(x, y*2, 320, 20);
+		add(txtcodigoProducto);
+		txtcodigoProducto.setBounds(x*7, y*2, 290, 20);
+		
+		add(lbNITProveedor);
+		lbNITProveedor.setBounds(x, y*3, 320, 20);
+		add(txtNITProveedor);
+		txtNITProveedor.setBounds(x*7, y*3, 290, 20);
+		
+		add(lbPrecioCompraProducto);
+		lbPrecioCompraProducto.setBounds(x, y*4, 320, 20);
+		add(txtPrecioCompraProducto);
+		txtPrecioCompraProducto.setBounds(x*12, y*4, 240, 20);
+		
+		add(lbPrecioVentaProducto);
+		lbPrecioVentaProducto.setBounds(x, y*5, 320, 20);
+		add(txtPrecioVentaProducto);
+		txtPrecioVentaProducto.setBounds(x*11, y*5, 250, 20);
+		
+		JLabel label = new JLabel();
+		label.setIcon( new ImageIcon("./dato/icono_producto.png"));
+		add(label);
+		label.setBounds(x*37, y, 130, 130);
+		
+		
+		JPanel boton = new JPanel();
+		boton.setBounds(x, y*6,490, 50);
+		add(boton);
+		
+		boton.add(btnAgregar);
+		boton.add(btnActualizar);
+		boton.add(btnBorrar);
+		boton.add(btnLeer);
 	}
 
 
