@@ -70,7 +70,7 @@ public class PanelProveedores extends JPanel {
 		int x = 10;
 		
 		JLabel label = new JLabel();
-		label.setIcon( new ImageIcon("./dato/icono_proveedores.png"));
+		label.setIcon( new ImageIcon("./dato/imagenes/icono_proveedores.png"));
 		add(label);
 		label.setBounds(x*37, y, 130, 130);
 		

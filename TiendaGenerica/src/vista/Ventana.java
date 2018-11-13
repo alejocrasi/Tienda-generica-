@@ -61,7 +61,7 @@ public class Ventana extends JFrame {
 		
 		  
 		JLabel label = new JLabel();
-		label.setIcon( new ImageIcon("./dato/tienda.jpg"));
+		label.setIcon( new ImageIcon("./dato/imagenes/tienda.jpg"));
 		add(label, BorderLayout.WEST);
 		
 		btnSalir = new JButton("salir");
@@ -96,6 +96,7 @@ public class Ventana extends JFrame {
 		panelClientes.getBtnAgregar().addActionListener(controlador);
 		panelClientes.getBtnBorrar().addActionListener(controlador);
 		panelClientes.getBtnActualizar().addActionListener(controlador);
+		panelClientes.getBtnLeer().addActionListener(controlador);
 		
 		panelProveedores = new PanelProveedores(this);
 		panelProveedores.getBtnAgregar().addActionListener(controlador);

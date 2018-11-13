@@ -2,6 +2,8 @@ package modelo;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 
 public class Mundo {
 	private ArrayList<Cliente>clientes;
@@ -18,7 +20,7 @@ public class Mundo {
 	
 	public boolean agregarCliente(String nombre, int cedula, String direccion, int telefono, String correo){
 		boolean agrego = false;
-		if(buscarCliente(cedula)==null){
+		if(buscarCliente(cedula)==-1){
 		Cliente nuevo = new Cliente(nombre, cedula, direccion, telefono, correo);
 		clientes.add(nuevo);
 		agrego = true;
@@ -27,18 +29,31 @@ public class Mundo {
 		
 		return agrego;
 	}
-	public Cliente buscarCliente( int cedula){
-		Cliente encontrado = null;
-		for (int i = 0; i < clientes.size(); i++) {
+	public int buscarCliente( int cedula){
+		int pos = -1;
+		for (int i = 0; i < clientes.size()&& pos==-1; i++) {
 			Cliente actual = clientes.get(i);
-			if(actual.getCedula()==cedula){
-				encontrado = actual;
-			}
-			
-		}
-		return encontrado;
-		
+			if(actual != null && actual.getCedula()== cedula){
+				pos =i;
+			}	
+		}	
+		return pos;
 	}
+	
+    public boolean eliminarCliente(int cedula){
+    	boolean agre = false;
+    	int indice = buscarCliente(cedula);
+    	
+    	  if (indice >=0) {
+			clientes.remove(indice);
+			agre = true;
+    	  }
+
+    	  return agre;
+      }
+    
+	
+	
 	
 	public Boolean agregarProveedor(int NIT, String nombreProveedor, String direccion, int telefono, String ciudad) {
 		boolean agrego = false;
@@ -51,7 +66,7 @@ public class Mundo {
 		
 	}
 		
-		public Proveedor buscarProveedor( int NIT){
+	public Proveedor buscarProveedor( int NIT){
 			Proveedor encontrado = null;
 			for (int i = 0; i < provedores.size(); i++) {
 				Proveedor actual = provedores.get(i);
@@ -63,6 +78,20 @@ public class Mundo {
 			}
 			return encontrado;
 		}
+
+
+
+
+	public ArrayList<Cliente> getClientes() {
+		return clientes;
+	}
+
+
+
+
+	public void setClientes(ArrayList<Cliente> clientes) {
+		this.clientes = clientes;
+	}
 	
 	
 	

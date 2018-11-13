@@ -133,7 +133,7 @@ public class PanelTienda extends JPanel {
 		btnActualizar.setBounds(x, y*10 ,100, 100);
 		add(btnActualizar);
 		
-		;
+		
 	}
 
 

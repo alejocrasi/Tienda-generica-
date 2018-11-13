@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import modelo.Cliente;
 import modelo.Mundo;
 import modelo.Tienda;
 import vista.Ventana;
@@ -13,6 +14,7 @@ public class Controlador implements ActionListener {
 	private Ventana vista ;
 	private Tienda tienda;
 	private Mundo mundo;
+	private AdminPercisencia persis;
 	
 	
 	
@@ -21,6 +23,7 @@ public class Controlador implements ActionListener {
 	public Controlador() {
 		vista  = new Ventana(this);
 		tienda = new Tienda();
+		persis = new AdminPercisencia();
 		mundo = new Mundo();
 		
 		vista.setVisible(true);
@@ -130,16 +133,34 @@ public class Controlador implements ActionListener {
 			
 			if (rta == true){
 				mensaje("su cliente fue agregado");
-				
-				
-				
-				
-				
 			}
 			else
 				mensaje("ERROR");
 
 		}
+		
+		if(comando.equals(vista.BORRAR_CLIENTE)){
+			int cedu = Integer.parseInt(pedirDato("ingrese cedula del cliente que desea eliminar"));
+			
+			boolean rta = mundo.eliminarCliente(cedu);
+			if (rta ==true) {
+				mensaje("el cliente con la cedula "+ cedu+" fue eliminado");
+				
+			}
+			else
+				mensaje("no se encontro el cliente");
+
+			
+		}
+		
+		
+		if(comando.equals(vista.LEER_CLIENTE)){
+			System.out.println("holi??");
+			persis.leerCliente();
+
+		
+	}
+		
 		if(comando.equals(vista.AGREGAR_PROVEEDOR)) {
 			int NIT = Integer.parseInt(vista.getPanelProveedores().getTxtNIT().getText());
 			String nombre = vista.getPanelProveedores().getTxtnombreProveedor().getText();
@@ -154,20 +175,8 @@ public class Controlador implements ActionListener {
 				
 			}
 			else
-				mensaje("ERROR");
-			
-			
-
-			
-			
-			
-			
+				mensaje("ERROR");	
 		}
-		
-		
-		
-		
-		
 	}
 	
 	

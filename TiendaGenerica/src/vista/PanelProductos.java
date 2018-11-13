@@ -100,7 +100,7 @@ public class PanelProductos extends JPanel {
 		txtPrecioVentaProducto.setBounds(x*11, y*5, 250, 20);
 		
 		JLabel label = new JLabel();
-		label.setIcon( new ImageIcon("./dato/icono_producto.png"));
+		label.setIcon( new ImageIcon("./dato/imagenes/icono_producto.png"));
 		add(label);
 		label.setBounds(x*37, y, 130, 130);
 		

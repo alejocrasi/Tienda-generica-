@@ -1,13 +1,18 @@
 package vista;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 
 import org.omg.CORBA.PolicyHolder;
 
@@ -28,6 +33,12 @@ public class PanelClientes extends JPanel {
 	private JLabel  lbdireccion;
 	private JLabel  lbtelefono;
 	private JLabel  lbcorreo;
+	
+	private JTable tabla;
+	
+	private String [][]datos= {{"", "", "","",""}};
+	private String []cabe = {"Nombre", "Cedula", "direccion","telefono","correo"};
+	
 	
 	private Ventana vista;
 
@@ -50,11 +61,11 @@ public class PanelClientes extends JPanel {
 		btnLeer.setActionCommand(vista.LEER_CLIENTE);
 		
 		
-		txtnombre = new JTextField("nombre del cliente");
-		txtcedula = new JTextField("cedula del cliente");
-		txtdireccion = new JTextField("direccion del cliente");
-		txttelefono = new JTextField("telefono del cliente");
-		txtcorreo = new JTextField("correo del cliente");
+		txtnombre = new JTextField("");
+		txtcedula = new JTextField("");
+		txtdireccion = new JTextField("");
+		txttelefono = new JTextField("");
+		txtcorreo = new JTextField("");
 		
 		lbnombre = new JLabel("nombre:");
 		lbcedula = new JLabel("cedula:");
@@ -92,7 +103,7 @@ public class PanelClientes extends JPanel {
 		txtcorreo.setBounds(x*7, y*5, 290, 20);
 		
 		JLabel label = new JLabel();
-		label.setIcon( new ImageIcon("./dato/cliente.png"));
+		label.setIcon( new ImageIcon("./dato/imagenes/cliente.png"));
 		add(label);
 		label.setBounds(x*37, y, 140, 140);
 
@@ -105,6 +116,15 @@ public class PanelClientes extends JPanel {
 		boton.add(btnActualizar);
 		boton.add(btnBorrar);
 		boton.add(btnLeer);
+		
+		
+		
+		tabla = new JTable(datos,cabe);
+		JScrollPane tab = new JScrollPane(tabla);
+		tab.setBounds(x, y*8,500, 150);
+		add(tab);
+		
+		
 	}
 
 	public JButton getBtnAgregar() {
