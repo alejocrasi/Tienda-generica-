@@ -56,7 +56,18 @@ public class Controlador implements ActionListener {
 			vista.dispose();
 			
 		}
-		
+		if (e.getSource()==vista.getComprar()) {
+			
+			vista.getCheque().setVisible(true);
+			vista.getPanelClientes().setVisible(false);
+			vista.getPanelTienda().setVisible(false);
+			vista.getPanelProductos().setVisible(false);
+			vista.getPanelProveedores().setVisible(false);
+        	
+        	
+        	
+            
+        }
 		
 		if (e.getSource()==vista.getCliente()) {
 			
@@ -70,7 +81,7 @@ public class Controlador implements ActionListener {
         	
             
         }
-		if (e.getSource()==vista.getTienda()) {
+		if (e.getSource()==vista.getConfigTienda()) {
         	vista.add(vista.getPanelTienda());
         	vista.getPanelTienda().setVisible(true);
         	vista.getPanelClientes().setVisible(false);

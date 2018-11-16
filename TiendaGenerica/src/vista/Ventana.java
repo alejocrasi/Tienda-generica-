@@ -1,6 +1,11 @@
 package vista;
 
+import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 
 import javax.print.DocFlavor.URL;
@@ -19,10 +24,11 @@ public class Ventana extends JFrame {
 	private PanelTienda panelTienda;
 	private PanelProveedores panelProveedores;
 	private PanelProductos panelProductos ;
+	private panelCheque cheque;
 	private Controlador controlador;
 	private JMenuBar menu;
-    private JMenu paneles;
-    private JMenuItem tienda,proveedor,producto,cliente;
+    private JMenu paneles,ventas,compras,tienda;
+    private JMenuItem proveedor,producto,cliente,vender,comprar, configTienda;
     private JButton btnSalir;
     private JLabel lbImagen;
        
@@ -64,18 +70,44 @@ public class Ventana extends JFrame {
 		label.setIcon( new ImageIcon("./dato/imagenes/tienda.jpg"));
 		add(label, BorderLayout.WEST);
 		
+		
+		
+		
+		 
+		
 		btnSalir = new JButton("salir");
 		btnSalir.addActionListener(controlador);
 		btnSalir.setActionCommand("salir");
 		
 		menu=new JMenuBar();
         setJMenuBar(menu);
+        
         paneles=new JMenu("Opciones");
         menu.add(paneles);
         
-        tienda=new JMenuItem("tienda");
-        tienda.addActionListener(controlador);
-        paneles.add(tienda);
+        
+        ventas=new JMenu("Ventas");
+        menu.add(ventas);
+        
+        
+        compras =new JMenu("Compras");
+        menu.add(compras);
+        
+        tienda=new JMenu("tienda");
+        menu.add(tienda);
+        
+        vender=new JMenuItem("vender");
+        vender.addActionListener(controlador);
+        ventas.add(vender);
+        
+        comprar=new JMenuItem("comprar");
+        comprar.addActionListener(controlador);
+        compras.add(comprar);
+        
+       
+        configTienda = new JMenuItem("configurar la Tienda");
+        configTienda.addActionListener(controlador);
+        tienda.add(configTienda);
         
         proveedor=new JMenuItem("proveedor");       
         paneles.add(proveedor);
@@ -88,6 +120,9 @@ public class Ventana extends JFrame {
         cliente=new JMenuItem("cliente");
         paneles.add(cliente); 
         cliente.addActionListener(controlador);
+        
+        cheque = new panelCheque(controlador);
+        
 		
 		panelTienda = new PanelTienda(this);
 		panelTienda.getBtnActualizar().addActionListener(controlador);
@@ -120,94 +155,370 @@ public class Ventana extends JFrame {
 		
 		
 	}
+	
 
-	public JMenuBar getMenu() {
-		return menu;
+
+
+
+
+	private void setOpaque(boolean b) {
+		// TODO Auto-generated method stub
+		
 	}
-
-	public void setMenu(JMenuBar menu) {
-		this.menu = menu;
-	}
-
-	public JMenu getPaneles() {
-		return paneles;
-	}
-
-	public void setPaneles(JMenu paneles) {
-		this.paneles = paneles;
-	}
-
-	public JMenuItem getTienda() {
-		return tienda;
-	}
-
-	public void setTienda(JMenuItem tienda) {
-		this.tienda = tienda;
-	}
-
-	public JMenuItem getProveedor() {
-		return proveedor;
-	}
-
-	public void setProveedor(JMenuItem proveedor) {
-		this.proveedor = proveedor;
-	}
-
-	public JMenuItem getProducto() {
-		return producto;
-	}
-
-	public void setProducto(JMenuItem producto) {
-		this.producto = producto;
-	}
-
-	public JMenuItem getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(JMenuItem cliente) {
-		this.cliente = cliente;
-	}
-
-	public Controlador getControlador() {
-		return controlador;
-	}
-
-	public void setControlador(Controlador controlador) {
-		this.controlador = controlador;
-	}
-
 	public PanelClientes getPanelClientes() {
 		return panelClientes;
 	}
+
+
+
+
+
+
 
 	public void setPanelClientes(PanelClientes panelClientes) {
 		this.panelClientes = panelClientes;
 	}
 
+
+
+
+
+
+
 	public PanelTienda getPanelTienda() {
 		return panelTienda;
 	}
+
+
+
+
+
+
 
 	public void setPanelTienda(PanelTienda panelTienda) {
 		this.panelTienda = panelTienda;
 	}
 
+
+
+
+
+
+
 	public PanelProveedores getPanelProveedores() {
 		return panelProveedores;
 	}
+
+
+
+
+
+
 
 	public void setPanelProveedores(PanelProveedores panelProveedores) {
 		this.panelProveedores = panelProveedores;
 	}
 
+
+
+
+
+
+
 	public PanelProductos getPanelProductos() {
 		return panelProductos;
 	}
 
+
+
+
+
+
+
 	public void setPanelProductos(PanelProductos panelProductos) {
 		this.panelProductos = panelProductos;
 	}
+
+
+
+
+
+
+
+	public panelCheque getCheque() {
+		return cheque;
+	}
+
+
+
+
+
+
+
+	public void setCheque(panelCheque cheque) {
+		this.cheque = cheque;
+	}
+
+
+
+
+
+
+
+	public Controlador getControlador() {
+		return controlador;
+	}
+
+
+
+
+
+
+
+	public void setControlador(Controlador controlador) {
+		this.controlador = controlador;
+	}
+
+
+
+
+
+
+
+	public JMenuBar getMenu() {
+		return menu;
+	}
+
+
+
+
+
+
+
+	public void setMenu(JMenuBar menu) {
+		this.menu = menu;
+	}
+
+
+
+
+
+
+
+	public JMenu getPaneles() {
+		return paneles;
+	}
+
+
+
+
+
+
+
+	public void setPaneles(JMenu paneles) {
+		this.paneles = paneles;
+	}
+
+
+
+
+
+
+
+	public JMenu getVentas() {
+		return ventas;
+	}
+
+
+
+
+
+
+
+	public void setVentas(JMenu ventas) {
+		this.ventas = ventas;
+	}
+
+
+
+
+
+
+
+	public JMenu getCompras() {
+		return compras;
+	}
+
+
+
+
+
+
+
+	public void setCompras(JMenu compras) {
+		this.compras = compras;
+	}
+
+
+
+
+
+
+
+	public JMenu getTienda() {
+		return tienda;
+	}
+
+
+
+
+
+
+
+	public void setTienda(JMenu tienda) {
+		this.tienda = tienda;
+	}
+
+
+
+
+
+
+
+	public JMenuItem getProveedor() {
+		return proveedor;
+	}
+
+
+
+
+
+
+
+	public void setProveedor(JMenuItem proveedor) {
+		this.proveedor = proveedor;
+	}
+
+
+
+
+
+
+
+	public JMenuItem getProducto() {
+		return producto;
+	}
+
+
+
+
+
+
+
+	public void setProducto(JMenuItem producto) {
+		this.producto = producto;
+	}
+
+
+
+
+
+
+
+	public JMenuItem getCliente() {
+		return cliente;
+	}
+
+
+
+
+
+
+
+	public void setCliente(JMenuItem cliente) {
+		this.cliente = cliente;
+	}
+
+
+
+
+
+
+
+	public JMenuItem getVender() {
+		return vender;
+	}
+
+
+
+
+
+
+
+	public void setVender(JMenuItem vender) {
+		this.vender = vender;
+	}
+
+
+
+
+
+
+
+	public JMenuItem getComprar() {
+		return comprar;
+	}
+
+
+
+
+
+
+
+	public void setComprar(JMenuItem comprar) {
+		this.comprar = comprar;
+	}
+
+
+
+
+
+
+
+	public JMenuItem getConfigTienda() {
+		return configTienda;
+	}
+
+
+
+
+
+
+
+	public void setConfigTienda(JMenuItem configTienda) {
+		this.configTienda = configTienda;
+	}
+
+
+
+
+
+
+
+	public JLabel getLbImagen() {
+		return lbImagen;
+	}
+
+
+
+
+
+
+
+	public void setLbImagen(JLabel lbImagen) {
+		this.lbImagen = lbImagen;
+	}
+
 	
 	
 

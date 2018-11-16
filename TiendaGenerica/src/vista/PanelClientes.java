@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
@@ -125,7 +126,12 @@ public class PanelClientes extends JPanel {
 		add(tab);
 		
 		
+		
+		
 	}
+	
+	
+
 
 	public JButton getBtnAgregar() {
 		return btnAgregar;
