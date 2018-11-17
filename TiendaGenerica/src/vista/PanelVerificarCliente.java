@@ -30,7 +30,7 @@ public class PanelVerificarCliente extends JPanel{
 		add(lbCliente);
 		lbCliente.setBounds(x, y, 290, 20);
 		add(TxtCliente);
-		TxtCliente.setBounds(x*7, y, 290, 20);
+		TxtCliente.setBounds(x*14, y, 290, 20);
 		add(btnCliente);
 		btnCliente.setBounds(x, y*2, 350, 20);
 	

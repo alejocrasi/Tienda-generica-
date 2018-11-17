@@ -2,10 +2,13 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
 import modelo.Cliente;
+import modelo.DetalleCompras;
+import modelo.Librerias;
 import modelo.Mundo;
 import modelo.Producto;
 import modelo.Proveedor;
@@ -19,7 +22,9 @@ public class Controlador implements ActionListener {
 	private Cliente cliente;
 	private Proveedor proveedor;
 	private Producto producto;
+	private Librerias lib;
 	private Persistencia persis;
+	private ArrayList<DetalleCompras> detalleCompras;
 	
 	
 	
@@ -30,6 +35,7 @@ public class Controlador implements ActionListener {
 		tienda = new Tienda();
 		persis = new Persistencia();
 		mundo = new Mundo(cliente);
+		lib = new Librerias(this);
 		
 		vista.setVisible(true);
 
@@ -70,13 +76,29 @@ public class Controlador implements ActionListener {
 			vista.getPanelProductos().setVisible(false);
 			vista.getPanelProveedores().setVisible(false);
 			vista.getPanelVerifica().setVisible(false);
+			vista.getPanelventa().setVisible(false);
+
 
 			vista.setVisible(true);
         	
         	
             
         }
+	if (e.getSource()==vista.getVender()) {
 		
+	    vista.add(vista.getPanelventa());
+		vista.getPanelventa().setVisible(true);
+		vista.getPanelClientes().setVisible(false);
+		vista.getPanelTienda().setVisible(false);
+		vista.getPanelProductos().setVisible(false);
+		vista.getPanelProveedores().setVisible(false);
+		vista.getPanelVerifica().setVisible(false);
+
+		vista.setVisible(true);
+    	
+    	
+        
+    }
 		if (e.getSource()==vista.getCliente()) {
 			
 			vista.add(vista.getPanelClientes());
@@ -86,6 +108,7 @@ public class Controlador implements ActionListener {
 			vista.getPanelProductos().setVisible(false);
 			vista.getPanelProveedores().setVisible(false);
 			vista.getPanelVerifica().setVisible(false);
+			vista.getPanelventa().setVisible(false);
 
         	vista.setVisible(true);
         	
@@ -100,6 +123,7 @@ public class Controlador implements ActionListener {
 			vista.getPanelProductos().setVisible(false);
 			vista.getPanelProveedores().setVisible(false);
 			vista.getPanelVerifica().setVisible(false);
+			vista.getPanelventa().setVisible(false);
 
         	vista.setVisible(true);
 
@@ -112,6 +136,7 @@ public class Controlador implements ActionListener {
 			vista.getPanelTienda().setVisible(false);
 			vista.getPanelProveedores().setVisible(false);
 			vista.getPanelVerifica().setVisible(false);
+			vista.getPanelventa().setVisible(false);
 
         	vista.setVisible(true);
         }
@@ -123,6 +148,7 @@ public class Controlador implements ActionListener {
 			vista.getPanelTienda().setVisible(false);
 			vista.getPanelProductos().setVisible(false);
 			vista.getPanelVerifica().setVisible(false);
+			vista.getPanelventa().setVisible(false);
 
         	vista.setVisible(true);
         }
@@ -134,21 +160,44 @@ public class Controlador implements ActionListener {
 			vista.getPanelTienda().setVisible(false);
 			vista.getPanelProductos().setVisible(false);
 			vista.getPanelcompra().setVisible(false);
+			vista.getPanelventa().setVisible(false);
 
 			vista.setVisible(true);
 		}
 		if (comando.equals(vista.ACEPTAR_COMPRA)){
-			int i = 0;
 			
-			vista.getPanelcheque().setVisible(true);
+			String [] nombre = new String[3];
+			nombre[0] = "compra 1";
+			nombre[1] = "compra 2";
+			nombre[2] = "compra 3";
+			
+			int [] cantidad  = new int[3];
+			//cantidad[0] = detalleCompras.get(0).getCantidad();
+			//cantidad[1] = detalleCompras.get(1).getCantidad();
+			//cantidad[2] = detalleCompras.get(2).getCantidad();
+			cantidad[0] = 10;
+			cantidad[1] = 10;
+			cantidad[2] = 10;
+			lib.libreria(nombre, cantidad);
+			
+			
 			
 			
 
 			
 		}
+		if(comando.equals("acep")){
+			vista.getPanelcheque().setVisible(true);
+		}
 		if (comando.equals(vista.AGREGAR_PRODUCTO_COMPRA)){
+			int nITdelProv = Integer.parseInt(vista.getPanelcompra().getTxtNITdelProv().getText());
+			int codigo =  Integer.parseInt(vista.getPanelcompra().getTxtcodigo().getText());
+			int cantidad =  Integer.parseInt(vista.getPanelcompra().getTxtcodigo().getText());
 			
 			
+			DetalleCompras compra = new DetalleCompras(cantidad, cantidad, cantidad);
+			compra.agregarCompras(nITdelProv, codigo, cantidad);
+			mensaje("se agrego");
 			
 
 			
@@ -459,8 +508,7 @@ public class Controlador implements ActionListener {
 		Cliente cliente = new Cliente("", IDcliente, "", 0, "");
 		mundo = new Mundo(cliente);
 		cliente = mundo.getCliente().leerCliente(cliente);
-		vista.getPanelventa().getTxtCliente().setText(cliente.getNombre());
-		vista.getPanelventa().getTxtIDcliente().setText(Integer.toString(cliente.getCedula()));
+		vista.getPanelventa().getTxtCliente().setText(Integer.toString(cliente.getCedula()));
 		if (cliente == null){
 			JOptionPane.showMessageDialog(null, "Cliente no encontrado");}
 		else{
@@ -477,6 +525,9 @@ public class Controlador implements ActionListener {
 	
 	
 	
+	
+
+
 	public static void main(String[] args) {
 		Controlador c = new Controlador();
 		

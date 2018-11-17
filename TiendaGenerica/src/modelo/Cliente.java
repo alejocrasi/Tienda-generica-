@@ -16,6 +16,7 @@ public class Cliente implements Serializable
 	private String direccion;
 	private int telefono;
 	private String correo;
+	
 	public Cliente(String pNombre, int pCedula, String pDireccion, int pTelefono, String pCorreo) {
 		this.nombre = pNombre;
 		this.cedula = pCedula;

@@ -6,6 +6,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
@@ -28,7 +30,10 @@ public class PanelProductos extends JPanel {
 	private JLabel  lbPrecioVentaProducto;
 	
 	
-
+	private JTable tabla;
+	
+	private String [][]datos= {{"", "", "","",""}};
+	private String []cabe = {"Nombre", "Cedula", "direccion","telefono","correo"};
 	
 	private Ventana vista;
 
@@ -55,11 +60,11 @@ public class PanelProductos extends JPanel {
 	
 		
 		
-		txtnombreProducto = new JTextField("código de producto");
-		txtcodigoProducto = new JTextField("nombre del producto");
-		txtNITProveedor = new JTextField("NIT de proveedor ");
-		txtPrecioCompraProducto = new JTextField("precio de compra");
-		txtPrecioVentaProducto = new JTextField("precio de venta");
+		txtnombreProducto = new JTextField(" ");
+		txtcodigoProducto = new JTextField(" ");
+		txtNITProveedor = new JTextField(" ");
+		txtPrecioCompraProducto = new JTextField(" ");
+		txtPrecioVentaProducto = new JTextField(" ");
 		
 		lbnombreProducto = new JLabel("código:");
 		lbcodigoProducto = new JLabel("nombre :");
@@ -113,6 +118,11 @@ public class PanelProductos extends JPanel {
 		boton.add(btnActualizar);
 		boton.add(btnBorrar);
 		boton.add(btnLeer);
+		
+		tabla = new JTable(datos,cabe);
+		JScrollPane tab = new JScrollPane(tabla);
+		tab.setBounds(x, y*8,500, 150);
+		add(tab);
 	}
 
 

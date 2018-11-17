@@ -8,6 +8,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
@@ -29,7 +31,10 @@ public class PanelProveedores extends JPanel {
 	private JLabel  lbtelefono;
 	private JLabel  lbciudad;
 	
-
+	private JTable tabla;
+	
+	private String [][]datos= {{"", "", "","",""}};
+	private String []cabe = {"Nombre", "Cedula", "direccion","telefono","correo"};
 
 	private Ventana vista;
 
@@ -54,11 +59,11 @@ public class PanelProveedores extends JPanel {
 		btnLeer = new JButton("leer");
 		btnLeer.setActionCommand(vista.LEER_PROVEEDOR);
 		
-		txtNIT = new JTextField("NIT del proveedor");
-		txtnombreProveedor = new JTextField("nombre del proveedor");
-		txtdireccion = new JTextField("direccion del proveedor");
-		txttelefono = new JTextField("telefono del proveedor");
-		txtciudad= new JTextField("ciudad del proveedor");
+		txtNIT = new JTextField(" ");
+		txtnombreProveedor = new JTextField(" ");
+		txtdireccion = new JTextField(" ");
+		txttelefono = new JTextField(" ");
+		txtciudad= new JTextField(" ");
 		
 		lbNIT = new JLabel("NIT :");
 		lbnombreProveedor = new JLabel("nombre :");
@@ -109,6 +114,11 @@ public class PanelProveedores extends JPanel {
 		boton.add(btnActualizar);
 		boton.add(btnBorrar);
 		boton.add(btnLeer);
+		
+		tabla = new JTable(datos,cabe);
+		JScrollPane tab = new JScrollPane(tabla);
+		tab.setBounds(x, y*8,500, 150);
+		add(tab);
 	}
 
 

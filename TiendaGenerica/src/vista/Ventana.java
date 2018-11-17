@@ -54,13 +54,13 @@ public class Ventana extends JFrame {
 	public static final String BORRAR_PRODUCTO = "234526";
 	public static final String LEER_PRODUCTO = "23gf45";
 	
-	public static final String ACEPTAR_COMPRA = "dgfdf";
-	public static final String AGREGAR_PRODUCTO_COMPRA = "dtvhfh";
+	public static final String ACEPTAR_COMPRA = "sdfsdfsg";
+	public static final String AGREGAR_PRODUCTO_COMPRA = "sgdsdf";
 	
-	public static final String BUSCAR_PRODUCTO = "1pp";
-	public static final String TOTALIZAR = "2pp";
+	public static final String BUSCAR_PRODUCTO = "wefwe";
+	public static final String TOTALIZAR = "werwrefsd";
 	
-	public static final String BUSCAR_CLIENTE = "4pp";
+	public static final String BUSCAR_CLIENTE = "sdgsf";
 
 	
 
@@ -92,7 +92,7 @@ public class Ventana extends JFrame {
 		menu=new JMenuBar();
         setJMenuBar(menu);
         
-        paneles=new JMenu("Opciones");
+        paneles=new JMenu("Opciones de creacion");
         menu.add(paneles);
         
         
@@ -162,6 +162,10 @@ public class Ventana extends JFrame {
 		panelcompra =  new panelCompra(this);
 		panelcompra.getBtnAceptar().addActionListener(controlador);
 		panelcompra.getBtnAgregarproducto().addActionListener(controlador);
+		
+		panelventa = new PanelVentas(this);
+		panelventa.getBtnAgregarProducto().addActionListener(controlador);
+		panelventa.getBtnTotalizar().addActionListener(controlador);
 
 		PanelVerifica = new PanelVerificarCliente(this);
 		PanelVerifica.getBtnCliente().addActionListener(controlador);

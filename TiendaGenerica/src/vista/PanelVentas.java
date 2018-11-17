@@ -14,12 +14,13 @@ public class PanelVentas extends JPanel {
 	
 	private JLabel lbProducto;
 	private JLabel lbCliente;
-	private JLabel lbIDcliente;
+	private JLabel lbcantidad;
+	
 	private JTextField TxtProducto;
-	private JTextField TxtTotalizar;
+	private JTextField TxtCantidad;
 	private JTextField TxtCliente;
-	private JTextField TxtIDcliente;
-	private JButton btnProducto;
+	
+	private JButton btnAgregarProducto;
 	private JButton btnTotalizar;
 	
 	
@@ -35,90 +36,55 @@ public class PanelVentas extends JPanel {
 		setLayout(null);
 		setBorder(new TitledBorder("Ventas"));
 		
-		btnProducto = new JButton("buscar producto");
-		btnProducto.setActionCommand(vista.BUSCAR_PRODUCTO);
+		btnAgregarProducto = new JButton("Agregar Producto");
+		btnAgregarProducto.setActionCommand(vista.BUSCAR_PRODUCTO);
 		
 		btnTotalizar = new JButton("totalizar");
 		btnTotalizar.setActionCommand(vista.TOTALIZAR);
 		
 		TxtProducto = new JTextField("");
-		TxtTotalizar = new JTextField("");
+		TxtCantidad = new JTextField("");
 		TxtCliente = new JTextField("");
-		TxtIDcliente = new JTextField(""); 
 		
 		lbProducto = new JLabel("Codigo del producto :");
-		lbCliente = new JLabel("nombre del cliente :");
-		lbIDcliente = new JLabel("ID del cliente :");
+		lbCliente = new JLabel("cedula del cliente :");
+		lbcantidad = new JLabel("cantidad:");
 		
 		int y = 30;
 		int x = 10;
 		
 		add(lbCliente);
 		lbCliente.setBounds(x, y, 290, 20);
+		
 		add(TxtCliente);
-		
-		TxtCliente.setBounds(x*7, y, 290, 20);
-		TxtCliente.setEnabled(false);
-		
-		add(lbIDcliente);
-		lbIDcliente.setBounds(x, y*2, 290, 20);
-		add(TxtIDcliente);
-		TxtIDcliente.setBounds(x*7, y*2, 290, 20);
-		TxtIDcliente.setEnabled(false);
+		TxtCliente.setBounds(x*15, y, 290, 20);
 		
 		add(lbProducto);
-		lbProducto.setBounds(x, y*3, 290, 20);
+		lbProducto.setBounds(x, y*2, 290, 20);
 		add(TxtProducto);
-		TxtProducto.setBounds(x*7, y*3, 290, 20);
+		TxtProducto.setBounds(x*15, y*2, 290, 20);
 		
-		add(btnProducto);
-		btnProducto.setBounds(x, y*2, 290, 20);
+		add(lbcantidad);
+		lbcantidad.setBounds(x, y*3, 290, 20);
+		add(TxtCantidad);
+		TxtCantidad.setBounds(x*10, y*3, 290, 20);
+		
+		
+		
+		
 		
 		tabla = new JTable(datos,cabe);
 		JScrollPane tab = new JScrollPane(tabla);
-		tab.setBounds(50,170,500, 150);
+		tab.setBounds(x, y*4, 500, 150);
 		add(tab);
 		
+		add(btnAgregarProducto);
+		btnAgregarProducto.setBounds(x, y*10, 200, 20);
+		
 		add(btnTotalizar);
-		btnTotalizar.setBounds(240, 340, 120, 40);
+		btnTotalizar.setBounds(x*25, y*10, 150, 20);
 		
 		
-	}
-
-	public JLabel getLbCliente() {
-		return lbCliente;
-	}
-
-	public void setLbCliente(JLabel lbCliente) {
-		this.lbCliente = lbCliente;
-	}
-
-	public JLabel getLbIDcliente() {
-		return lbIDcliente;
-	}
-
-	public void setLbIDcliente(JLabel lbIDcliente) {
-		this.lbIDcliente = lbIDcliente;
-	}
-
-	public JTextField getTxtCliente() {
-		return TxtCliente;
-	}
-
-	public void setTxtCliente(JTextField txtCliente) {
-		TxtCliente = txtCliente;
-	}
-
-	public JTextField getTxtIDcliente() {
-		return TxtIDcliente;
-	}
-
-	public void setTxtIDcliente(JTextField txtIDcliente) {
-		TxtIDcliente = txtIDcliente;
-	}
-
-	public JTextField getTxtProducto() {
-		return TxtProducto;
 	}
 
 	public JLabel getLbProducto() {
@@ -129,24 +95,52 @@ public class PanelVentas extends JPanel {
 		this.lbProducto = lbProducto;
 	}
 
+	public JLabel getLbCliente() {
+		return lbCliente;
+	}
+
+	public void setLbCliente(JLabel lbCliente) {
+		this.lbCliente = lbCliente;
+	}
+
+	public JLabel getLbcantidad() {
+		return lbcantidad;
+	}
+
+	public void setLbcantidad(JLabel lbcantidad) {
+		this.lbcantidad = lbcantidad;
+	}
+
+	public JTextField getTxtProducto() {
+		return TxtProducto;
+	}
+
 	public void setTxtProducto(JTextField txtProducto) {
 		TxtProducto = txtProducto;
 	}
 
-	public JTextField getTxtTotalizar() {
-		return TxtTotalizar;
+	public JTextField getTxtCantidad() {
+		return TxtCantidad;
 	}
 
-	public void setTxtTotalizar(JTextField txtTotalizar) {
-		TxtTotalizar = txtTotalizar;
+	public void setTxtCantidad(JTextField txtCantidad) {
+		TxtCantidad = txtCantidad;
 	}
 
-	public JButton getBtnProducto() {
-		return btnProducto;
+	public JTextField getTxtCliente() {
+		return TxtCliente;
 	}
 
-	public void setBtnProducto(JButton btnProducto) {
-		this.btnProducto = btnProducto;
+	public void setTxtCliente(JTextField txtCliente) {
+		TxtCliente = txtCliente;
+	}
+
+	public JButton getBtnAgregarProducto() {
+		return btnAgregarProducto;
+	}
+
+	public void setBtnAgregarProducto(JButton btnAgregarProducto) {
+		this.btnAgregarProducto = btnAgregarProducto;
 	}
 
 	public JButton getBtnTotalizar() {
@@ -181,12 +175,6 @@ public class PanelVentas extends JPanel {
 		this.cabe = cabe;
 	}
 
-	public Ventana getVista() {
-		return vista;
-	}
-
-	public void setVista(Ventana vista) {
-		this.vista = vista;
-	}
+	
 
 }
