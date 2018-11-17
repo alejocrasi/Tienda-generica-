@@ -1,6 +1,6 @@
 package modelo;
 
-public class Tienda {
+public class Tienda  {
 	private String nombreTienda;
 	private String tipoTienda;
 	private int  NITtienda;

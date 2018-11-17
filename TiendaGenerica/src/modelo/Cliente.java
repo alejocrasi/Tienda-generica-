@@ -1,25 +1,22 @@
 package modelo;
 
-public class Cliente {
+import java.io.Serializable;
+
+public class Cliente implements Serializable
+{
 	private String nombre;
 	private int cedula;
 	private String direccion;
 	private int telefono;
 	private String correo;
-	
-	
-	
-	public Cliente(String nombre, int cedula, String direccion, int telefono, String correo) {
+	public Cliente(String pNombre, int pCedula, String pDireccion, int pTelefono, String pCorreo) {
 		
-		this.nombre = nombre;
-		this.cedula = cedula;
-		this.direccion = direccion;
-		this.telefono = telefono;
-		this.correo = correo;
+		this.nombre = pNombre;
+		this.cedula = pCedula;
+		this.direccion = pDireccion;
+		this.telefono = pTelefono;
+		this.correo = pCorreo;
 	}
-	
-	
-	
 	
 	public String getNombre() {
 		return nombre;
@@ -51,13 +48,16 @@ public class Cliente {
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-	
-	
-	
-	
-	
-	
-
-	
-
 }
+
+
+
+	
+	
+	
+	
+	
+
+	
+
+

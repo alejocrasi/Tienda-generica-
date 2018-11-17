@@ -4,94 +4,132 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-
-
+import java.util.Random;
 import modelo.Cliente;
 import modelo.Mundo;
+import modelo.Producto;
+import modelo.Proveedor;
+	public class AdminPercisencia {
 
-public class AdminPercisencia {
-	private String rutaClie = "./dato/archivos/cliente.out";
-	private String rutaProve = "";
-	private String rutaProduc = "";
-	private String rutaTiend = "";
 
-	private int REGISTROS = 10;
-	private FileOutputStream fos;     
-	private DataOutputStream dos;
-	private FileInputStream fis;     
-	private DataInputStream dis;
-	private File f; 
-	private Mundo mundo;
-
-	
-	public AdminPercisencia() {
-		mundo = new Mundo();
 		
 		
-	}
-	public String escribirCliente(ArrayList<Cliente> cliente) {
-		String mensaje = "Registro de Cliente Ingresado!";
-		try{
-			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(rutaClie));
-			out.writeObject(cliente);
+		private String rutaClie = "C:\\data\\cliente.out";
+		private String rutaProve = "C:\\data\\proveedor.out";
+		private String rutaProduc = "C:\\data\\producto.out";
+		private String rutaTiend = "C:\\data\\tienda.out";
+
+		private int REGISTROS = 10;
+		//private File f = new File("C:\\data\\cliente.txt"); 
+		private FileOutputStream fos;     
+		private DataOutputStream dos;
+		private FileInputStream fis;     
+		private DataInputStream dis;
+		public AdminPercisencia() {
+			// TODO Auto-generated constructor stub
+		}
+
+		public String escribirCliente(ArrayList<Cliente> cliente) {
+			String mensaje = "Registro de Cliente Ingresado!";
+			try{ ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(rutaClie));
+				out.writeObject(cliente);
+				out.flush();
+				out.close();
+			
+			}catch (IOException e) {
+				e.printStackTrace(); 
+				mensaje = "Error de IO";
+			}
+			return mensaje;
+		}
+		public ArrayList<Cliente> leerCliente(){
+	     ObjectInputStream in;
+	     ArrayList<Cliente> clientes;
+		    try {
+		    	in = new ObjectInputStream(new FileInputStream(rutaClie));
+		        clientes = (ArrayList<Cliente>)in.readObject();
+		        in.close();
+
+			} catch (IOException | ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				clientes = null;
+			}
+		return clientes;
+		}
+		public String escribirProveedor(ArrayList<Proveedor>proveedor){
+			String mensaje = "se a ingresado al proveedor";
+			try{ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(rutaProve));
+				out.writeObject(proveedor);
+				out.flush();
+				out.close();
+			}
+			catch(IOException e){
+				e.printStackTrace();
+				mensaje = "Error de IO";
+			}
+			return mensaje;
+		}
+		public ArrayList<Proveedor> leerProveedor(){
+			ObjectInputStream in;
+			ArrayList<Proveedor> proveedor;
+			try{in = new ObjectInputStream(new FileInputStream(rutaProve));
+				proveedor = (ArrayList<Proveedor>)in.readObject();
+				in.close();
+			}catch(IOException | ClassNotFoundException e){
+				e.printStackTrace();
+				proveedor = null;
+			}
+			return proveedor;
+		}
+		public String escribirProducto(ArrayList<Producto>producto){
+			String mensaje = "se agrego producto";
+			try{ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(rutaProduc));
+			out.writeObject(producto);
 			out.flush();
 			out.close();
+			}catch(IOException e){
+				e.printStackTrace();
+				mensaje = "Error IO";
+			}
+			return mensaje;
+		}
+		public ArrayList<Producto> leerProducto(){
+			 ArrayList<Producto> producto;
+			ObjectInputStream in;
+			try{in = new ObjectInputStream(new FileInputStream(rutaProduc));
+			   producto = (ArrayList<Producto>)in.readObject();
+		        in.close();
+			}catch(IOException|ClassNotFoundException e){
+				e.printStackTrace();
+				producto = null;
+			}
+			return producto;
+		}
 		
-		}catch (IOException e) {
-			e.printStackTrace(); 
-			mensaje = "Error de IO";
+		public String getRutaProve() {
+			return rutaProve;
 		}
-		return mensaje;
-	}
-	
-	public void leerCliente2(){
-		System.out.println("hola??"); 
-     ObjectInputStream in;
-     ArrayList<Cliente> clientes;
-	    try {
-	    	in = new ObjectInputStream(new FileInputStream(rutaClie));
-	        clientes = (ArrayList<Cliente>)in.readObject();
-	        in.close();
-	        for (int i = 0; i < clientes.size(); i++) {
-				System.out.println(clientes.get(i).getCedula());
-				System.out.println(clientes.get(i).getNombre());
-				System.out.println(clientes.get(i).getDireccion());
-				System.out.println(clientes.get(i).getTelefono());
 
-			}
+		public void setRutaProve(String rutaProve) {
+			this.rutaProve = rutaProve;
+		}
 
-		} catch (IOException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("ERROR");
-			clientes = null;
+		public String getRutaClie() {
+			return rutaClie;
 		}
-	   
+
+		public void setRutaClie(String rutaClie) {
+			this.rutaClie = rutaClie;
+		}
+
 	
-	}
-	public void leerCliente() {
-		 f = new File(rutaClie);
-		try {
-			fis = new FileInputStream(f);
-			dis = new DataInputStream(fis);
-			for (int i=0; i<REGISTROS ; i++){
-				//System.out.println(dis.readDouble());
-				int cliente = mundo.getClientes().get(i).getTelefono() ;
-				cliente = dis.readInt();
-				System.out.println(cliente);
-			}
-			dis.close();
-			
-		}
-		catch(IOException e){     
-			e.printStackTrace(); 
-			System.out.println("nose");
-		} 
-	}
+		
 
 }

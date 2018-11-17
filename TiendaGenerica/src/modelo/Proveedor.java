@@ -1,8 +1,10 @@
 package modelo;
 
+import java.io.Serializable;
+
 import javax.swing.JTextField;
 
-public class Proveedor {
+public class Proveedor implements Serializable {
 	
 	
 	
