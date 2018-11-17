@@ -26,11 +26,13 @@ public class Ventana extends JFrame {
 	private PanelProductos panelProductos ;
 	private panelCheque panelcheque;
 	private panelCompra panelcompra;
+	private PanelVerificarCliente PanelVerifica;
+	private PanelVentas panelventa;
 
 	private Controlador controlador;
 	private JMenuBar menu;
     private JMenu paneles,ventas,compras,tienda;
-    private JMenuItem proveedor,producto,cliente,vender,comprar, configTienda;
+    private JMenuItem proveedor,producto,cliente,vender,comprar, configTienda,PanelVerificar;
     private JButton btnSalir;
     private JLabel lbImagen;
        
@@ -55,7 +57,11 @@ public class Ventana extends JFrame {
 	public static final String ACEPTAR_COMPRA = "dgfdf";
 	public static final String AGREGAR_PRODUCTO_COMPRA = "dtvhfh";
 	
+	public static final String BUSCAR_PRODUCTO = "1pp";
+	public static final String TOTALIZAR = "2pp";
 	
+	public static final String BUSCAR_CLIENTE = "4pp";
+
 	
 
 
@@ -108,6 +114,9 @@ public class Ventana extends JFrame {
         comprar.addActionListener(controlador);
         compras.add(comprar);
         
+        PanelVerificar = new JMenuItem("ventas");
+        ventas.add(PanelVerificar);
+        PanelVerificar.addActionListener(controlador);
        
         configTienda = new JMenuItem("configurar la Tienda");
         configTienda.addActionListener(controlador);
@@ -154,6 +163,8 @@ public class Ventana extends JFrame {
 		panelcompra.getBtnAceptar().addActionListener(controlador);
 		panelcompra.getBtnAgregarproducto().addActionListener(controlador);
 
+		PanelVerifica = new PanelVerificarCliente(this);
+		PanelVerifica.getBtnCliente().addActionListener(controlador);
 		
 		add(btnSalir,BorderLayout.SOUTH);
 		
@@ -175,6 +186,82 @@ public class Ventana extends JFrame {
 
 
 
+
+	public PanelVentas getPanelventa() {
+		return panelventa;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public void setPanelventa(PanelVentas panelventa) {
+		this.panelventa = panelventa;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public JMenuItem getPanelVerificar() {
+		return PanelVerificar;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public void setPanelVerificar(JMenuItem panelVerificar) {
+		PanelVerificar = panelVerificar;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public PanelVerificarCliente getPanelVerifica() {
+		return PanelVerifica;
+	}
+
+	public void setPanelVerifica(PanelVerificarCliente panelVerifica) {
+		PanelVerifica = panelVerifica;
+	}
 
 	public panelCheque getPanelcheque() {
 		return panelcheque;

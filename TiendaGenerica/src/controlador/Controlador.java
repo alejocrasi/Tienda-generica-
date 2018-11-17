@@ -19,7 +19,7 @@ public class Controlador implements ActionListener {
 	private Cliente cliente;
 	private Proveedor proveedor;
 	private Producto producto;
-	private AdminPercisencia persis;
+	private Persistencia persis;
 	
 	
 	
@@ -28,8 +28,8 @@ public class Controlador implements ActionListener {
 	public Controlador() {
 		vista  = new Ventana(this);
 		tienda = new Tienda();
-		persis = new AdminPercisencia();
-		mundo = new Mundo();
+		persis = new Persistencia();
+		mundo = new Mundo(cliente);
 		
 		vista.setVisible(true);
 
@@ -69,12 +69,13 @@ public class Controlador implements ActionListener {
 			vista.getPanelTienda().setVisible(false);
 			vista.getPanelProductos().setVisible(false);
 			vista.getPanelProveedores().setVisible(false);
+			vista.getPanelVerifica().setVisible(false);
+
 			vista.setVisible(true);
         	
         	
             
         }
-		
 		
 		if (e.getSource()==vista.getCliente()) {
 			
@@ -84,6 +85,8 @@ public class Controlador implements ActionListener {
 			vista.getPanelTienda().setVisible(false);
 			vista.getPanelProductos().setVisible(false);
 			vista.getPanelProveedores().setVisible(false);
+			vista.getPanelVerifica().setVisible(false);
+
         	vista.setVisible(true);
         	
         	
@@ -96,6 +99,8 @@ public class Controlador implements ActionListener {
         	vista.getPanelClientes().setVisible(false);
 			vista.getPanelProductos().setVisible(false);
 			vista.getPanelProveedores().setVisible(false);
+			vista.getPanelVerifica().setVisible(false);
+
         	vista.setVisible(true);
 
         }
@@ -106,6 +111,8 @@ public class Controlador implements ActionListener {
         	vista.getPanelClientes().setVisible(false);
 			vista.getPanelTienda().setVisible(false);
 			vista.getPanelProveedores().setVisible(false);
+			vista.getPanelVerifica().setVisible(false);
+
         	vista.setVisible(true);
         }
 		if (e.getSource()==vista.getProveedor()) {
@@ -115,9 +122,21 @@ public class Controlador implements ActionListener {
 			vista.getPanelcompra().setVisible(false);
 			vista.getPanelTienda().setVisible(false);
 			vista.getPanelProductos().setVisible(false);
+			vista.getPanelVerifica().setVisible(false);
+
         	vista.setVisible(true);
         }
-		
+		if (e.getSource()==vista.getPanelVerificar()) {
+			vista.add(vista.getPanelVerifica());
+			vista.getPanelVerifica().setVisible(true);
+			vista.getPanelProveedores().setVisible(false);
+        	vista.getPanelClientes().setVisible(false);
+			vista.getPanelTienda().setVisible(false);
+			vista.getPanelProductos().setVisible(false);
+			vista.getPanelcompra().setVisible(false);
+
+			vista.setVisible(true);
+		}
 		if (comando.equals(vista.ACEPTAR_COMPRA)){
 			int i = 0;
 			
@@ -161,43 +180,74 @@ public class Controlador implements ActionListener {
 		
 		if (comando.equals(vista.AGREGAR_CLIENTE)){
 			String nombre = vista.getPanelClientes().getTxtnombre().getText();
-			int cedu = Integer.parseInt(vista.getPanelClientes().getTxtcedula().getText());
+			int cedu ;
+			try{ cedu = Integer.parseInt(vista.getPanelClientes().getTxtcedula().getText());
+				}catch(NumberFormatException ex){
+					  cedu =0;}
 			String direc = vista.getPanelClientes().getTxtdireccion().getText();
-			int tel = Integer.parseInt(vista.getPanelClientes().getTxttelefono().getText());
+			int tel;
+			try{ tel = Integer.parseInt(vista.getPanelClientes().getTxttelefono().getText());
+			}catch(NumberFormatException ex){
+				  tel =0;}
 			String correo = vista.getPanelClientes().getTxtcorreo().getText();
-			boolean rta =mundo.agregarCliente(nombre, cedu, direc, tel, correo);
-			
-			if (rta == true)
+			cliente = new Cliente(nombre, cedu, direc, tel, correo);
+			mundo = new Mundo(cliente);
+		    boolean rta = mundo.getCliente().agregarCliente(nombre, cedu, direc, tel, correo);
+		    if (rta == true)
 				mensaje("su cliente fue agregado");
 			else
 			   mensaje("ERROR");}
+		   
+		    
 		if(comando.equals(vista.ACTUALIZAR_CLIENTE))
 		{
+			
 			String nombre = vista.getPanelClientes().getTxtnombre().getText();
-			int cedu = Integer.parseInt(vista.getPanelClientes().getTxtcedula().getText());
+			int cedu ;
+			try{ cedu = Integer.parseInt(vista.getPanelClientes().getTxtcedula().getText());
+				}catch(NumberFormatException ex){
+					  cedu =0;}
 			String direc = vista.getPanelClientes().getTxtdireccion().getText();
-			int tel = Integer.parseInt(vista.getPanelClientes().getTxttelefono().getText());
+			int tel;
+			try{ tel = Integer.parseInt(vista.getPanelClientes().getTxttelefono().getText());
+			}catch(NumberFormatException ex){
+				  tel =0;}
 			String correo = vista.getPanelClientes().getTxtcorreo().getText();
 		    cliente = new Cliente(nombre, cedu, direc, tel, correo);
-			mundo.ActualizarCliente(cliente);}
-		if(comando.equals(vista.BORRAR_CLIENTE))
-		{
-			String nombre = vista.getPanelClientes().getTxtnombre().getText();
-			int cedu = Integer.parseInt(vista.getPanelClientes().getTxtcedula().getText());
-			String direc = vista.getPanelClientes().getTxtdireccion().getText();
-			int tel = Integer.parseInt(vista.getPanelClientes().getTxttelefono().getText());
-			String correo = vista.getPanelClientes().getTxtcorreo().getText();
-			cliente = new Cliente (nombre, cedu, direc, tel, correo);
-			mundo.eliminarCliente(cliente);}
-		if(comando.equals(vista.LEER_CLIENTE)){
+		    mundo = new Mundo(cliente);
+			mundo.getCliente().ActualizarCliente(cliente);}
 
-			String nombre = vista.getPanelClientes().getTxtnombre().getText();
-			int cedu = Integer.parseInt(vista.getPanelClientes().getTxtcedula().getText());
+		if(comando.equals(vista.BORRAR_CLIENTE))
+		{	String nombre = vista.getPanelClientes().getTxtnombre().getText();
+		int cedu ;
+		try{ cedu = Integer.parseInt(vista.getPanelClientes().getTxtcedula().getText());
+			}catch(NumberFormatException ex){
+				  cedu =0;}
 			String direc = vista.getPanelClientes().getTxtdireccion().getText();
-			int tel = Integer.parseInt(vista.getPanelClientes().getTxttelefono().getText());
+			int tel;
+			try{ tel = Integer.parseInt(vista.getPanelClientes().getTxttelefono().getText());
+			}catch(NumberFormatException ex){
+				  tel =0;}
 			String correo = vista.getPanelClientes().getTxtcorreo().getText();
 			cliente = new Cliente (nombre, cedu, direc, tel, correo);
-			cliente = mundo.leerCliente(cliente);
+			mundo = new Mundo(cliente);
+			mundo.getCliente().eliminarCliente(cliente);}
+		
+		if(comando.equals(vista.LEER_CLIENTE))
+		{	String nombre = vista.getPanelClientes().getTxtnombre().getText();
+		int cedu ;
+		try{ cedu = Integer.parseInt(vista.getPanelClientes().getTxtcedula().getText());
+			}catch(NumberFormatException ex){
+				  cedu =0;}
+			String direc = vista.getPanelClientes().getTxtdireccion().getText();
+			int tel;
+			try{ tel = Integer.parseInt(vista.getPanelClientes().getTxttelefono().getText());
+			}catch(NumberFormatException ex){
+				  tel =0;}
+			String correo = vista.getPanelClientes().getTxtcorreo().getText();
+			cliente = new Cliente (nombre, cedu, direc, tel, correo);
+			mundo = new Mundo(cliente);
+			cliente = mundo.getCliente().leerCliente(cliente);
 			vista.getPanelClientes().getTxtnombre().setText(cliente.getNombre());
 			vista.getPanelClientes().getTxtdireccion().setText(cliente.getDireccion());
 			vista.getPanelClientes().getTxttelefono().setText(Integer.toString(cliente.getTelefono()));
@@ -206,47 +256,75 @@ public class Controlador implements ActionListener {
 		
 		
 		
-		
 		if(comando.equals(vista.AGREGAR_PROVEEDOR)) {
-			int NIT = Integer.parseInt(vista.getPanelProveedores().getTxtNIT().getText());
+			int NIT;
+			try{  NIT = Integer.parseInt(vista.getPanelProveedores().getTxtNIT().getText());
+			}catch(NumberFormatException ex){
+				NIT =0;}
 			String nombre = vista.getPanelProveedores().getTxtnombreProveedor().getText();
 			String direccion = vista.getPanelProveedores().getTxtdireccion().getText();
-			int telefono = Integer.parseInt(vista.getPanelProveedores().getTxttelefono().getText());
+			int telefono;
+			try{telefono = Integer.parseInt(vista.getPanelProveedores().getTxttelefono().getText());
+			}catch(NumberFormatException ex){
+				telefono =0;}
 			String ciudad = vista.getPanelProveedores().getTxtciudad().getText();
-
-				boolean rta = mundo.agregarProveedor(NIT, nombre, direccion, telefono, ciudad);
-				
+             Proveedor proveedor = new Proveedor(NIT, nombre, direccion, telefono, ciudad);
+             mundo = new Mundo(proveedor);
+				boolean rta = mundo.getProveedor().agregarProveedor(NIT, nombre, direccion, telefono, ciudad);		
 			if (rta == true)
 				mensaje("su Proveedor fue agregado");
 			else
 				mensaje("ERROR");}
+		
 	   if (e.getActionCommand().equals(vista.ACTUALIZAR_PROVEEDOR)){
-		   int NIT = Integer.parseInt(vista.getPanelProveedores().getTxtNIT().getText());
+		   int NIT;
+			try{  NIT = Integer.parseInt(vista.getPanelProveedores().getTxtNIT().getText());
+			}catch(NumberFormatException ex){
+				NIT =0;}
 			String nombre = vista.getPanelProveedores().getTxtnombreProveedor().getText();
 			String direccion = vista.getPanelProveedores().getTxtdireccion().getText();
-			int telefono = Integer.parseInt(vista.getPanelProveedores().getTxttelefono().getText());
+			int telefono;
+			try{telefono = Integer.parseInt(vista.getPanelProveedores().getTxttelefono().getText());
+			}catch(NumberFormatException ex){
+				telefono =0;}
 			String ciudad = vista.getPanelProveedores().getTxtciudad().getText();
 			proveedor = new Proveedor(NIT, nombre, direccion, telefono, ciudad);
-			mundo.ActualizarProveedor(proveedor);
+			mundo = new Mundo(proveedor);
+			mundo.getProveedor().ActualizarProveedor(proveedor);
 	   }
 	   if(comando.equals(vista.BORRAR_PROVEEDOR)){
-		   int NIT = Integer.parseInt(vista.getPanelProveedores().getTxtNIT().getText());
+		   int NIT;
+			try{  NIT = Integer.parseInt(vista.getPanelProveedores().getTxtNIT().getText());
+			}catch(NumberFormatException ex){
+				NIT =0;}
 			String nombre = vista.getPanelProveedores().getTxtnombreProveedor().getText();
 			String direccion = vista.getPanelProveedores().getTxtdireccion().getText();
-			int telefono = Integer.parseInt(vista.getPanelProveedores().getTxttelefono().getText());
+			int telefono;
+			try{telefono = Integer.parseInt(vista.getPanelProveedores().getTxttelefono().getText());
+			}catch(NumberFormatException ex){
+				telefono =0;}
 			String ciudad = vista.getPanelProveedores().getTxtciudad().getText();
 			proveedor = new Proveedor(NIT, nombre, direccion, telefono, ciudad);
-			mundo.eliminarProveedor(proveedor);
+			mundo = new Mundo(proveedor);
+			mundo.getProveedor().eliminarProveedor(proveedor);
 	   }
 	   if(comando.equals(vista.LEER_PROVEEDOR)){
-		   int NIT = Integer.parseInt(vista.getPanelProveedores().getTxtNIT().getText());
+		  int NIT;
+			try{  NIT = Integer.parseInt(vista.getPanelProveedores().getTxtNIT().getText());
+			}catch(NumberFormatException ex){
+				NIT =0;}
 			String nombre = vista.getPanelProveedores().getTxtnombreProveedor().getText();
 			String direccion = vista.getPanelProveedores().getTxtdireccion().getText();
-			int telefono = Integer.parseInt(vista.getPanelProveedores().getTxttelefono().getText());
+			
+	     int telefono;
+			try{telefono = Integer.parseInt(vista.getPanelProveedores().getTxttelefono().getText());
+			}catch(NumberFormatException ex){
+				telefono =0;}
+			
 			String ciudad = vista.getPanelProveedores().getTxtciudad().getText();
 			proveedor = new Proveedor(NIT, nombre, direccion, telefono, ciudad);
-			proveedor = mundo.leerProveedor(proveedor);		
-			vista.getPanelProveedores().getTxtNIT().setText(Integer.toString(proveedor.getNIT()));
+			mundo = new Mundo(proveedor);
+			proveedor = mundo.getProveedor().leerProveedor(proveedor);		
 			vista.getPanelProveedores().getTxtnombreProveedor().setText(proveedor.getNombreProveedor());
 			vista.getPanelProveedores().getTxtdireccion().setText(proveedor.getDireccion());
 			vista.getPanelProveedores().getTxttelefono().setText(Integer.toString(proveedor.getTelefono()));
@@ -257,42 +335,117 @@ public class Controlador implements ActionListener {
 	   
 	  
 	  if(comando.equals(vista.AGREGAR_PRODUCTO)){
-		  int codigoProducto = Integer.parseInt(vista.getPanelProductos().getTxtcodigoProducto().getText());
+		int codigoProducto;
+		try{ codigoProducto = Integer.parseInt(vista.getPanelProductos().getTxtcodigoProducto().getText());
+		}catch(NumberFormatException ex){
+				codigoProducto =0;}
+		
 		  String nombreProducto = vista.getPanelProductos().getTxtnombreProducto().getText();
-		  int nitProveedorProducto = Integer.parseInt(vista.getPanelProductos().getTxtNITProveedor().getText());
-		  int precioCompraProducto = Integer.parseInt(vista.getPanelProductos().getTxtPrecioCompraProducto().getText());
-		  int percioVentaProducto= Integer.parseInt(vista.getPanelProductos().getTxtPrecioVentaProducto().getText());
-		  boolean rta = mundo.agregarProducto(codigoProducto, nombreProducto, nitProveedorProducto, precioCompraProducto, percioVentaProducto);
+		  
+		int nitProveedorProducto;
+		try{ nitProveedorProducto = Integer.parseInt(vista.getPanelProductos().getTxtNITProveedor().getText());
+		}catch(NumberFormatException ex){
+				nitProveedorProducto =0;}
+		
+		int precioCompraProducto;
+			try{ precioCompraProducto = Integer.parseInt(vista.getPanelProductos().getTxtPrecioCompraProducto().getText());
+			}catch(NumberFormatException ex){
+				precioCompraProducto =0;}
+			
+			int  precioVentaProducto;
+			try{  precioVentaProducto = Integer.parseInt(vista.getPanelProductos().getTxtPrecioVentaProducto().getText());
+			}catch(NumberFormatException ex){
+				 precioVentaProducto =0;}
+			
+		  Producto producto = new Producto(codigoProducto, nombreProducto, nitProveedorProducto, precioCompraProducto, precioVentaProducto);
+		  mundo = new Mundo(producto);
+		  boolean rta = mundo.getProducto().agregarProducto(codigoProducto, nombreProducto, nitProveedorProducto, precioCompraProducto, precioVentaProducto);
 		  if (rta == true)
 				mensaje("su Producto fue agregado");
 			else
 				mensaje("ERROR");}
+	
 	if(comando.equals(vista.ACTUALIZAR_PRODUCTO)){
-		int codigoProducto = Integer.parseInt(vista.getPanelProductos().getTxtcodigoProducto().getText());
-		String nombreProducto = vista.getPanelProductos().getTxtnombreProducto().getText();
-		int nitProveedorProducto = Integer.parseInt(vista.getPanelProductos().getTxtNITProveedor().getText());
-		int precioCompraProducto = Integer.parseInt(vista.getPanelProductos().getTxtPrecioCompraProducto().getText());
-		int precioVentaProducto = Integer.parseInt(vista.getPanelProductos().getTxtPrecioVentaProducto().getText());
+		int codigoProducto;
+		try{ codigoProducto = Integer.parseInt(vista.getPanelProductos().getTxtcodigoProducto().getText());
+		}catch(NumberFormatException ex){
+				codigoProducto =0;}
+		
+		  String nombreProducto = vista.getPanelProductos().getTxtnombreProducto().getText();
+		  
+		int nitProveedorProducto;
+		try{ nitProveedorProducto = Integer.parseInt(vista.getPanelProductos().getTxtNITProveedor().getText());
+		}catch(NumberFormatException ex){
+				nitProveedorProducto =0;}
+		
+		int precioCompraProducto;
+			try{ precioCompraProducto = Integer.parseInt(vista.getPanelProductos().getTxtPrecioCompraProducto().getText());
+			}catch(NumberFormatException ex){
+				precioCompraProducto =0;}
+			
+			int  precioVentaProducto;
+			try{  precioVentaProducto = Integer.parseInt(vista.getPanelProductos().getTxtPrecioVentaProducto().getText());
+			}catch(NumberFormatException ex){
+				 precioVentaProducto =0;}
+			
 		producto = new Producto(codigoProducto, nombreProducto, nitProveedorProducto, precioCompraProducto, precioVentaProducto);
-		mundo.ActualizarProducto(producto);}
+		mundo = new Mundo(producto);
+		mundo.getProducto().ActualizarProducto(producto);}
+	
 	if(comando.equals(vista.BORRAR_PRODUCTO)){
-		int codigoProducto = Integer.parseInt(vista.getPanelProductos().getTxtcodigoProducto().getText());
-		String nombreProducto = vista.getPanelProductos().getTxtnombreProducto().getText();
-		int nitProveedorProducto = Integer.parseInt(vista.getPanelProductos().getTxtNITProveedor().getText());
-		int precioCompraProducto = Integer.parseInt(vista.getPanelProductos().getTxtPrecioCompraProducto().getText());
-		int precioVentaProducto = Integer.parseInt(vista.getPanelProductos().getTxtPrecioVentaProducto().getText());
-		producto = new Producto(codigoProducto, nombreProducto, nitProveedorProducto, precioCompraProducto, precioVentaProducto);
-		mundo.eliminarProducto(producto);}
+		int codigoProducto;
+		try{ codigoProducto = Integer.parseInt(vista.getPanelProductos().getTxtcodigoProducto().getText());
+		}catch(NumberFormatException ex){
+				codigoProducto =0;}
+		
+		  String nombreProducto = vista.getPanelProductos().getTxtnombreProducto().getText();
+		  
+		int nitProveedorProducto;
+		try{ nitProveedorProducto = Integer.parseInt(vista.getPanelProductos().getTxtNITProveedor().getText());
+		}catch(NumberFormatException ex){
+				nitProveedorProducto =0;}
+		
+		int precioCompraProducto;
+			try{ precioCompraProducto = Integer.parseInt(vista.getPanelProductos().getTxtPrecioCompraProducto().getText());
+			}catch(NumberFormatException ex){
+				precioCompraProducto =0;}
+			
+			int  precioVentaProducto;
+			try{  precioVentaProducto = Integer.parseInt(vista.getPanelProductos().getTxtPrecioVentaProducto().getText());
+			}catch(NumberFormatException ex){
+				 precioVentaProducto =0;}
+			
+		producto = new Producto(codigoProducto, nombreProducto, nitProveedorProducto, precioCompraProducto,  precioVentaProducto);
+		mundo = new Mundo(producto);
+		mundo.getProducto().eliminarProducto(producto);}
+	
 	if(comando.equals(vista.LEER_PRODUCTO)){
+	
+		int codigoProducto;
+		try{ codigoProducto = Integer.parseInt(vista.getPanelProductos().getTxtcodigoProducto().getText());
+		}catch(NumberFormatException ex){
+				codigoProducto =0;}
 		
-		int codigoProducto = Integer.parseInt(vista.getPanelProductos().getTxtcodigoProducto().getText());
-		String nombreProducto = vista.getPanelProductos().getTxtnombreProducto().getText();
-		int nitProveedorProducto = Integer.parseInt(vista.getPanelProductos().getTxtNITProveedor().getText());
-		int precioCompraProducto = Integer.parseInt(vista.getPanelProductos().getTxtPrecioCompraProducto().getText());
-		int precioVentaProducto = Integer.parseInt(vista.getPanelProductos().getTxtPrecioVentaProducto().getText());
+		  String nombreProducto = vista.getPanelProductos().getTxtnombreProducto().getText();
+		  
+		int nitProveedorProducto;
+		try{ nitProveedorProducto = Integer.parseInt(vista.getPanelProductos().getTxtNITProveedor().getText());
+		}catch(NumberFormatException ex){
+				nitProveedorProducto =0;}
 		
-			producto = new Producto(codigoProducto, nombreProducto, nitProveedorProducto, precioCompraProducto, precioVentaProducto);
-			producto = mundo.leerProducto(producto);
+		int precioCompraProducto;
+			try{ precioCompraProducto = Integer.parseInt(vista.getPanelProductos().getTxtPrecioCompraProducto().getText());
+			}catch(NumberFormatException ex){
+				precioCompraProducto =0;}
+			
+			int  precioVentaProducto;
+			try{  precioVentaProducto = Integer.parseInt(vista.getPanelProductos().getTxtPrecioVentaProducto().getText());
+			}catch(NumberFormatException ex){
+				 precioVentaProducto =0;}
+					
+			producto = new Producto(codigoProducto, nombreProducto, nitProveedorProducto, precioCompraProducto,  precioVentaProducto);
+			mundo = new Mundo(producto);
+			producto = mundo.getProducto().leerProducto(producto);
 		
 		vista.getPanelProductos().getTxtnombreProducto().setText(producto.getNombreProducto());
 		vista.getPanelProductos().getTxtNITProveedor().setText(Integer.toString(producto.getNitProveedorProducto()));
@@ -300,6 +453,26 @@ public class Controlador implements ActionListener {
 		vista.getPanelProductos().getTxtPrecioVentaProducto().setText(Integer.toString(producto.getPrecioVentaProducto()));
 		
 	}
+	
+	if(comando.equals(vista.BUSCAR_CLIENTE)){
+		int IDcliente = Integer.parseInt(vista.getPanelVerifica().getTxtCliente().getText());
+		Cliente cliente = new Cliente("", IDcliente, "", 0, "");
+		mundo = new Mundo(cliente);
+		cliente = mundo.getCliente().leerCliente(cliente);
+		vista.getPanelventa().getTxtCliente().setText(cliente.getNombre());
+		vista.getPanelventa().getTxtIDcliente().setText(Integer.toString(cliente.getCedula()));
+		if (cliente == null){
+			JOptionPane.showMessageDialog(null, "Cliente no encontrado");}
+		else{
+				vista.add(vista.getPanelventa());
+				vista.getPanelClientes().setVisible(false);
+				vista.getPanelTienda().setVisible(false);
+				vista.getPanelProductos().setVisible(false);
+				vista.getPanelProveedores().setVisible(false);
+				vista.getPanelVerifica().setVisible(false);
+				vista.getPanelventa().setVisible(true);
+	        	vista.setVisible(true);
+		}}  
 	}
 	
 	

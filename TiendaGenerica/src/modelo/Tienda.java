@@ -1,9 +1,13 @@
 package modelo;
 
-public class Tienda  {
+import java.io.Serializable;
+
+public class Tienda implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private String nombreTienda;
 	private String tipoTienda;
-	private int  NITtienda;
+	private int  NITTienda;
 	private String ciudad;
 	private int IVA;
 	private int tasaInteres;
@@ -14,7 +18,7 @@ public class Tienda  {
 	public Tienda() {
 		nombreTienda = null;
 		tipoTienda = null;
-		NITtienda = 0 ;
+		NITTienda = 0 ;
 		ciudad = null;
 		IVA = 0;
 		tasaInteres = 0;
@@ -31,7 +35,7 @@ public class Tienda  {
 		String linea="";
 		linea= nombreTienda + "\n\n";
 		linea+="\t tipo de Tienda  : " + tipoTienda +"\n";
-		linea+="\t NIT             : " + NITtienda +"\n";
+		linea+="\t NIT             : " + NITTienda +"\n";
 		linea+="\t ciudad          : " + ciudad +"\n";
 		linea+="\t tasa de Interes : " + tasaInteres +"\n";
 		linea+="\t IVA             : " + IVA +"\n";
@@ -64,11 +68,11 @@ public class Tienda  {
 	}
 
 	public int getNITtienda() {
-		return NITtienda;
+		return NITTienda;
 	}
 
 	public void setNITtienda(int nITtienda) {
-		NITtienda = nITtienda;
+		NITTienda = nITtienda;
 	}
 
 	public String getCiudad() {
@@ -132,3 +136,9 @@ public class Tienda  {
 	
 	
 }
+
+
+
+	
+	
+

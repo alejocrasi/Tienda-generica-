@@ -8,7 +8,7 @@ public class Venta {
 	private int valorTotal;
 	private int valorIVA;
 	private int valorTotalIVA;
-	private  ArrayList<DetalleVentas>detalleVentas;
+	
 	
 
 }

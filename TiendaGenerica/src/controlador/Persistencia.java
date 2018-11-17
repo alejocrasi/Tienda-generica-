@@ -2,38 +2,35 @@ package controlador;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Properties;
+
 import modelo.Cliente;
-import modelo.Mundo;
 import modelo.Producto;
 import modelo.Proveedor;
-	public class AdminPercisencia {
+import modelo.Tienda;
+	public class Persistencia {
 
 
-		
-		
 		private String rutaClie = "C:\\data\\cliente.out";
 		private String rutaProve = "C:\\data\\proveedor.out";
 		private String rutaProduc = "C:\\data\\producto.out";
-		private String rutaTiend = "C:\\data\\tienda.out";
-
-		private int REGISTROS = 10;
-		//private File f = new File("C:\\data\\cliente.txt"); 
-		private FileOutputStream fos;     
-		private DataOutputStream dos;
-		private FileInputStream fis;     
-		private DataInputStream dis;
-		public AdminPercisencia() {
+		private String archivoprop = "C:\\data\\archivo.properties";
+		
+		private Properties prop = new Properties ();
+		public Persistencia() {
 			// TODO Auto-generated constructor stub
 		}
+		public void setPropiedades(){
+			
+		}
+		
 
 		public String escribirCliente(ArrayList<Cliente> cliente) {
 			String mensaje = "Registro de Cliente Ingresado!";
@@ -56,7 +53,7 @@ import modelo.Proveedor;
 		        clientes = (ArrayList<Cliente>)in.readObject();
 		        in.close();
 
-			} catch (IOException | ClassNotFoundException e) {
+			} catch (Exception  e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				clientes = null;
