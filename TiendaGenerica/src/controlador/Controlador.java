@@ -56,18 +56,20 @@ public class Controlador implements ActionListener {
 			vista.dispose();
 			
 		}
-		if (e.getSource()==vista.getComprar()) {
-			
-			vista.getCheque().setVisible(true);
+	if (e.getSource()==vista.getComprar()) {
+		
+		    vista.add(vista.getPanelcompra());
+			vista.getPanelcompra().setVisible(true);
 			vista.getPanelClientes().setVisible(false);
 			vista.getPanelTienda().setVisible(false);
 			vista.getPanelProductos().setVisible(false);
 			vista.getPanelProveedores().setVisible(false);
-        	
+			vista.setVisible(true);
         	
         	
             
         }
+		
 		
 		if (e.getSource()==vista.getCliente()) {
 			
@@ -106,6 +108,23 @@ public class Controlador implements ActionListener {
 			vista.getPanelProductos().setVisible(false);
         	vista.setVisible(true);
         }
+		
+		if (comando.equals(vista.ACEPTAR_COMPRA)){
+			int i = 0;
+			
+			vista.getPanelcheque().setVisible(true);
+			
+			
+
+			
+		}
+		if (comando.equals(vista.AGREGAR_PRODUCTO_COMPRA)){
+			
+			
+			
+
+			
+		}
         
 		if (comando.equals(vista.ACTUALIZAR_TIENDA)){
 			String nombre = vista.getPanelTienda().getTxtnombreTienda().getText();

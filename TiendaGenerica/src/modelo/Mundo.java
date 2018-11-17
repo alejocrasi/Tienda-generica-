@@ -8,8 +8,37 @@ import javax.swing.JOptionPane;
 public class Mundo {
 	private ArrayList<Cliente>clientes;
 	private ArrayList<Proveedor>provedores;
+	private ArrayList<Producto>productos;
 	
 	
+	public ArrayList<Proveedor> getProvedores() {
+		return provedores;
+	}
+
+
+
+
+	public void setProvedores(ArrayList<Proveedor> provedores) {
+		this.provedores = provedores;
+	}
+
+
+
+
+	public ArrayList<Producto> getProductos() {
+		return productos;
+	}
+
+
+
+
+	public void setProductos(ArrayList<Producto> productos) {
+		this.productos = productos;
+	}
+
+
+
+
 	public Mundo() {
 		clientes = new ArrayList<Cliente>();
 		provedores = new ArrayList<Proveedor>();

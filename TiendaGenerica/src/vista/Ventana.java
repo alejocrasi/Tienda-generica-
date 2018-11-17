@@ -24,7 +24,9 @@ public class Ventana extends JFrame {
 	private PanelTienda panelTienda;
 	private PanelProveedores panelProveedores;
 	private PanelProductos panelProductos ;
-	private panelCheque cheque;
+	private panelCheque panelcheque;
+	private panelCompra panelcompra;
+
 	private Controlador controlador;
 	private JMenuBar menu;
     private JMenu paneles,ventas,compras,tienda;
@@ -34,22 +36,24 @@ public class Ventana extends JFrame {
        
            
 	
-	public final static String ACTUALIZAR_TIENDA = "tieergnda";
-	public static final String ACTUALIZAR_CLIENTE = "clisfbegn";
-	public static final String AGREGAR_CLIENTE = "clieertnagre";
-	public static final String BORRAR_CLIENTE = "clienerboorr";
-	public static final String LEER_CLIENTE = "clienleeer";
+	public final static String ACTUALIZAR_TIENDA = "zdgzdcfg";
+	public static final String ACTUALIZAR_CLIENTE = "asccfsdhg";
+	public static final String AGREGAR_CLIENTE = "servgcv";
+	public static final String BORRAR_CLIENTE = "awvshst";
+	public static final String LEER_CLIENTE = "eshvyrt";
 	
 	public static final String ACTUALIZAR_PROVEEDOR = "cl35tien";
 	public static final String AGREGAR_PROVEEDOR = "aergertaerg";
-	public static final String BORRAR_PROVEEDOR = "1ert";
-	public static final String LEER_PROVEEDOR = "2ert";
+	public static final String BORRAR_PROVEEDOR = "1eraxsdft";
+	public static final String LEER_PROVEEDOR = "dyhgfh";
 	
-	public static final String ACTUALIZAR_PRODUCTO = "3ert";
-	public static final String AGREGAR_PRODUCTO = "4ert";
-	public static final String BORRAR_PRODUCTO = "245";
-	public static final String LEER_PRODUCTO = "6wrf";
+	public static final String ACTUALIZAR_PRODUCTO = "78990";
+	public static final String AGREGAR_PRODUCTO = "35674";
+	public static final String BORRAR_PRODUCTO = "234526";
+	public static final String LEER_PRODUCTO = "23gf45";
 	
+	public static final String ACEPTAR_COMPRA = "dgfdf";
+	public static final String AGREGAR_PRODUCTO_COMPRA = "dtvhfh";
 	
 	
 	
@@ -121,7 +125,7 @@ public class Ventana extends JFrame {
         paneles.add(cliente); 
         cliente.addActionListener(controlador);
         
-        cheque = new panelCheque(controlador);
+        panelcheque = new panelCheque(controlador);
         
 		
 		panelTienda = new PanelTienda(this);
@@ -146,7 +150,10 @@ public class Ventana extends JFrame {
 		panelProductos.getBtnActualizar().addActionListener(controlador);
 		panelProductos.getBtnLeer().addActionListener(controlador);
 		
-		
+		panelcompra =  new panelCompra(this);
+		panelcompra.getBtnAceptar().addActionListener(controlador);
+		panelcompra.getBtnAgregarproducto().addActionListener(controlador);
+
 		
 		add(btnSalir,BorderLayout.SOUTH);
 		
@@ -161,18 +168,34 @@ public class Ventana extends JFrame {
 
 
 
-	private void setOpaque(boolean b) {
-		// TODO Auto-generated method stub
-		
+
+	
+
+
+
+
+
+
+	public panelCheque getPanelcheque() {
+		return panelcheque;
 	}
+
+	public void setPanelcheque(panelCheque panelcheque) {
+		this.panelcheque = panelcheque;
+	}
+
+	public panelCompra getPanelcompra() {
+		return panelcompra;
+	}
+
+	public void setPanelcompra(panelCompra panelcompra) {
+		this.panelcompra = panelcompra;
+	}
+
+
 	public PanelClientes getPanelClientes() {
 		return panelClientes;
 	}
-
-
-
-
-
 
 
 	public void setPanelClientes(PanelClientes panelClientes) {
@@ -180,159 +203,58 @@ public class Ventana extends JFrame {
 	}
 
 
-
-
-
-
-
 	public PanelTienda getPanelTienda() {
 		return panelTienda;
 	}
 
-
-
-
-
-
-
 	public void setPanelTienda(PanelTienda panelTienda) {
 		this.panelTienda = panelTienda;
 	}
-
-
-
-
-
-
-
 	public PanelProveedores getPanelProveedores() {
 		return panelProveedores;
 	}
 
-
-
-
-
-
-
 	public void setPanelProveedores(PanelProveedores panelProveedores) {
 		this.panelProveedores = panelProveedores;
 	}
-
-
-
-
-
-
 
 	public PanelProductos getPanelProductos() {
 		return panelProductos;
 	}
 
 
-
-
-
-
-
 	public void setPanelProductos(PanelProductos panelProductos) {
 		this.panelProductos = panelProductos;
 	}
 
-
-
-
-
-
-
-	public panelCheque getCheque() {
-		return cheque;
-	}
-
-
-
-
-
-
-
-	public void setCheque(panelCheque cheque) {
-		this.cheque = cheque;
-	}
-
-
-
-
-
-
-
 	public Controlador getControlador() {
 		return controlador;
 	}
-
-
-
-
-
-
 
 	public void setControlador(Controlador controlador) {
 		this.controlador = controlador;
 	}
 
 
-
-
-
-
-
 	public JMenuBar getMenu() {
 		return menu;
 	}
-
-
-
-
-
-
 
 	public void setMenu(JMenuBar menu) {
 		this.menu = menu;
 	}
 
-
-
-
-
-
-
 	public JMenu getPaneles() {
 		return paneles;
 	}
-
-
-
-
-
-
 
 	public void setPaneles(JMenu paneles) {
 		this.paneles = paneles;
 	}
 
-
-
-
-
-
-
 	public JMenu getVentas() {
 		return ventas;
 	}
-
-
-
-
-
 
 
 	public void setVentas(JMenu ventas) {
@@ -340,18 +262,9 @@ public class Ventana extends JFrame {
 	}
 
 
-
-
-
-
-
 	public JMenu getCompras() {
 		return compras;
 	}
-
-
-
-
 
 
 
@@ -361,39 +274,18 @@ public class Ventana extends JFrame {
 
 
 
-
-
-
-
 	public JMenu getTienda() {
 		return tienda;
 	}
-
-
-
-
-
-
 
 	public void setTienda(JMenu tienda) {
 		this.tienda = tienda;
 	}
 
 
-
-
-
-
-
 	public JMenuItem getProveedor() {
 		return proveedor;
 	}
-
-
-
-
-
-
 
 	public void setProveedor(JMenuItem proveedor) {
 		this.proveedor = proveedor;
@@ -401,18 +293,9 @@ public class Ventana extends JFrame {
 
 
 
-
-
-
-
 	public JMenuItem getProducto() {
 		return producto;
 	}
-
-
-
-
-
 
 
 	public void setProducto(JMenuItem producto) {
