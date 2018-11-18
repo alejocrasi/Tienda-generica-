@@ -2,6 +2,10 @@ package modelo;
 
 import java.io.Serializable;
 
+import javax.swing.JOptionPane;
+
+import controlador.Persistencia;
+
 public class Tienda implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -14,7 +18,24 @@ public class Tienda implements Serializable {
 	private String nombreBanco;
 	private int numCuentaCorriente;
 	private String gerente;
-	
+	private Persistencia persistencia;
+
+	public int getNITTienda() {
+		return NITTienda;
+	}
+
+	public void setNITTienda(int nITTienda) {
+		NITTienda = nITTienda;
+	}
+
+	public Persistencia getPersistencia() {
+		return persistencia;
+	}
+
+	public void setPersistencia(Persistencia persistencia) {
+		this.persistencia = persistencia;
+	}
+
 	public Tienda() {
 		nombreTienda = null;
 		tipoTienda = null;
@@ -26,8 +47,18 @@ public class Tienda implements Serializable {
 		numCuentaCorriente =0;
 		gerente = "alejandro";
 		
+		persistencia = new Persistencia();
 	}
 	
+	 public void ActualizarTienda(Tienda tienda){
+		 persistencia.setPropiedades(tienda);
+	     JOptionPane.showMessageDialog(null, "se ha actualizado");}
+	 public Tienda leerTienda(){
+		 Tienda tienda = new Tienda();
+		 tienda = persistencia.getPropiedades();
+		 return tienda;
+	 }
+	    
 	
 	
 	public String TiendaActual() {

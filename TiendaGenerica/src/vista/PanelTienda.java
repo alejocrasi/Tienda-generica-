@@ -20,6 +20,8 @@ import javax.swing.border.TitledBorder;
 public class PanelTienda extends JPanel {
 	
 	private JButton btnActualizar;
+	private JButton btnLeer;
+
 	private JTextField  txtnombreTienda;
 	private JTextField  txttipoTienda;
 	private JTextField  txtNITtienda;
@@ -29,6 +31,11 @@ public class PanelTienda extends JPanel {
 	private JTextField  txtnombreBanco;
 	private JTextField  txtnumCuentaCorriente;
 	private JTextField  txtgerente;
+	
+	
+
+
+
 	private JLabel  lbnombreTienda;
 	private JLabel  lbtipoTienda;
 	private JLabel  lbNITtienda;
@@ -80,6 +87,8 @@ public class PanelTienda extends JPanel {
 		btnActualizar = new JButton("Actualizar");
 		btnActualizar.setActionCommand(vista.ACTUALIZAR_TIENDA);
 		
+		btnLeer = new JButton("Leer");
+		btnLeer.setActionCommand(vista.LEER_TIENDA);
 		
 		int y = 30;
 		int x = 10;
@@ -133,6 +142,8 @@ public class PanelTienda extends JPanel {
 		btnActualizar.setBounds(x, y*10 ,100, 100);
 		add(btnActualizar);
 		
+		btnLeer.setBounds(x*30, y*10, 100, 100);
+		add(btnLeer);
 		
 	}
 
@@ -140,6 +151,20 @@ public class PanelTienda extends JPanel {
 
 
 	
+	public JButton getBtnLeer() {
+		return btnLeer;
+	}
+
+
+
+
+
+
+
+
+	public void setBtnLeer(JButton btnLeer) {
+		this.btnLeer = btnLeer;
+	}
 
 
 

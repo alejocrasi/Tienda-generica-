@@ -37,8 +37,9 @@ public class Ventana extends JFrame {
     private JLabel lbImagen;
        
            
+    public final static String ACTUALIZAR_TIENDA = "13241sdc234";
+	public final static String LEER_TIENDA = "w4545yv";
 	
-	public final static String ACTUALIZAR_TIENDA = "zdgzdcfg";
 	public static final String ACTUALIZAR_CLIENTE = "asccfsdhg";
 	public static final String AGREGAR_CLIENTE = "servgcv";
 	public static final String BORRAR_CLIENTE = "awvshst";
@@ -49,10 +50,10 @@ public class Ventana extends JFrame {
 	public static final String BORRAR_PROVEEDOR = "1eraxsdft";
 	public static final String LEER_PROVEEDOR = "dyhgfh";
 	
-	public static final String ACTUALIZAR_PRODUCTO = "78990";
-	public static final String AGREGAR_PRODUCTO = "35674";
-	public static final String BORRAR_PRODUCTO = "234526";
-	public static final String LEER_PRODUCTO = "23gf45";
+	public static final String ACTUALIZAR_PRODUCTO = "asd";
+	public static final String AGREGAR_PRODUCTO = "3aasdsdasd5674";
+	public static final String BORRAR_PRODUCTO = "234asdd526";
+	public static final String LEER_PRODUCTO = "23gf4asd5";
 	
 	public static final String ACEPTAR_COMPRA = "sdfsdfsg";
 	public static final String AGREGAR_PRODUCTO_COMPRA = "sgdsdf";
@@ -63,7 +64,11 @@ public class Ventana extends JFrame {
 	public static final String BUSCAR_CLIENTE = "sdgsf";
 
 	
-
+	public static final String ELIMINAR_PRODUCTO = "3pp";
+	public static final String CANTIDAD_PRODUCTO = "20pp";
+	public static final String EFECTIVO_PRODUCTO = "21pp";
+	public static final String CUOTAS_PRODUCTO = "22pp";
+	
 
 	
 	public Ventana(Controlador pcontrolador) {
@@ -139,6 +144,7 @@ public class Ventana extends JFrame {
 		
 		panelTienda = new PanelTienda(this);
 		panelTienda.getBtnActualizar().addActionListener(controlador);
+		panelTienda.getBtnLeer().addActionListener(controlador);
 		
 		panelClientes = new PanelClientes(this);
 		panelClientes.getBtnAgregar().addActionListener(controlador);
@@ -164,9 +170,13 @@ public class Ventana extends JFrame {
 		panelcompra.getBtnAgregarproducto().addActionListener(controlador);
 		
 		panelventa = new PanelVentas(this);
-		panelventa.getBtnAgregarProducto().addActionListener(controlador);
+		panelventa.getBtnProducto().addActionListener(controlador);
 		panelventa.getBtnTotalizar().addActionListener(controlador);
-
+		panelventa.getBtnEliminarP().addActionListener(controlador);
+		panelventa.getTxtCantidad().addActionListener(controlador);
+		panelventa.getBtnEfectivo().addActionListener(controlador);
+		panelventa.getBtnCuotas().addActionListener(controlador);
+		
 		PanelVerifica = new PanelVerificarCliente(this);
 		PanelVerifica.getBtnCliente().addActionListener(controlador);
 		

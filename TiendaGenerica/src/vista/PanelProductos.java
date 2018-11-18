@@ -50,13 +50,13 @@ public class PanelProductos extends JPanel {
 
 		
 		btnAgregar = new JButton("Agregar");
-		btnAgregar.setActionCommand(vista.ACTUALIZAR_PRODUCTO);
+		btnAgregar.setActionCommand(vista.AGREGAR_PRODUCTO);
 		
 		btnBorrar = new JButton("Borrar");
-		btnBorrar.setActionCommand(vista.ACTUALIZAR_PRODUCTO);
+		btnBorrar.setActionCommand(vista.BORRAR_PRODUCTO);
 		
 		btnLeer = new JButton("leer");
-		btnLeer.setActionCommand(vista.ACTUALIZAR_PRODUCTO);
+		btnLeer.setActionCommand(vista.LEER_PRODUCTO);
 	
 		
 		

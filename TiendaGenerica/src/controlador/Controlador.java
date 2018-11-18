@@ -13,6 +13,7 @@ import modelo.Mundo;
 import modelo.Producto;
 import modelo.Proveedor;
 import modelo.Tienda;
+import modelo.Venta;
 import vista.Ventana;
 
 public class Controlador implements ActionListener {
@@ -23,6 +24,7 @@ public class Controlador implements ActionListener {
 	private Proveedor proveedor;
 	private Producto producto;
 	private Librerias lib;
+	private Venta venta;
 	private Persistencia persis;
 	private ArrayList<DetalleCompras> detalleCompras;
 	
@@ -36,6 +38,7 @@ public class Controlador implements ActionListener {
 		persis = new Persistencia();
 		mundo = new Mundo(cliente);
 		lib = new Librerias(this);
+		
 		
 		vista.setVisible(true);
 
@@ -77,6 +80,7 @@ public class Controlador implements ActionListener {
 			vista.getPanelProveedores().setVisible(false);
 			vista.getPanelVerifica().setVisible(false);
 			vista.getPanelventa().setVisible(false);
+			vista.setSize(1000, 500);
 
 
 			vista.setVisible(true);
@@ -93,7 +97,7 @@ public class Controlador implements ActionListener {
 		vista.getPanelProductos().setVisible(false);
 		vista.getPanelProveedores().setVisible(false);
 		vista.getPanelVerifica().setVisible(false);
-
+		vista.setSize(1500, 500);
 		vista.setVisible(true);
     	
     	
@@ -109,6 +113,7 @@ public class Controlador implements ActionListener {
 			vista.getPanelProveedores().setVisible(false);
 			vista.getPanelVerifica().setVisible(false);
 			vista.getPanelventa().setVisible(false);
+			vista.setSize(1000, 500);
 
         	vista.setVisible(true);
         	
@@ -124,6 +129,7 @@ public class Controlador implements ActionListener {
 			vista.getPanelProveedores().setVisible(false);
 			vista.getPanelVerifica().setVisible(false);
 			vista.getPanelventa().setVisible(false);
+			vista.setSize(1000, 500);
 
         	vista.setVisible(true);
 
@@ -137,6 +143,7 @@ public class Controlador implements ActionListener {
 			vista.getPanelProveedores().setVisible(false);
 			vista.getPanelVerifica().setVisible(false);
 			vista.getPanelventa().setVisible(false);
+			vista.setSize(1000, 500);
 
         	vista.setVisible(true);
         }
@@ -149,6 +156,7 @@ public class Controlador implements ActionListener {
 			vista.getPanelProductos().setVisible(false);
 			vista.getPanelVerifica().setVisible(false);
 			vista.getPanelventa().setVisible(false);
+			vista.setSize(1000, 500);
 
         	vista.setVisible(true);
         }
@@ -161,6 +169,7 @@ public class Controlador implements ActionListener {
 			vista.getPanelProductos().setVisible(false);
 			vista.getPanelcompra().setVisible(false);
 			vista.getPanelventa().setVisible(false);
+			vista.setSize(1000, 500);
 
 			vista.setVisible(true);
 		}
@@ -202,7 +211,45 @@ public class Controlador implements ActionListener {
 
 			
 		}
-        
+		if (comando.equals(vista.ACTUALIZAR_TIENDA)){
+			
+
+			String nombre = vista.getPanelTienda().getTxtnombreTienda().getText();
+			tienda.setNombreTienda(nombre);
+			String tipo = vista.getPanelTienda().getTxttipoTienda().getText();
+			tienda.setTipoTienda(tipo);
+			int nittienda = Integer.parseInt(vista.getPanelTienda().getTxtNITtienda().getText());
+			tienda.setNITtienda(nittienda);
+			String city = vista.getPanelTienda().getTxtciudad().getText();
+			tienda.setCiudad(city);
+			int iva = Integer.parseInt(vista.getPanelTienda().getTxtIVA().getText());
+			tienda.setIVA(iva); 
+			int tasainteres = Integer.parseInt(vista.getPanelTienda().getTxttasaInteres().getText());
+			tienda.setTasaInteres(tasainteres);
+			String nomBanco = vista.getPanelTienda().getTxtnombreBanco().getText();
+			tienda.setNombreBanco(nomBanco);
+			int numCuenta = Integer.parseInt(vista.getPanelTienda().getTxtnumCuentaCorriente().getText());
+			tienda.setNumCuentaCorriente(numCuenta);
+			String gerente = vista.getPanelTienda().getTxtgerente().getText();
+			tienda.setGerente(gerente);
+			mundo = new Mundo(tienda);
+			mundo.getTienda().ActualizarTienda(tienda);
+		}
+		
+		if(comando.equals(vista.LEER_TIENDA)){
+			System.out.println("leer");
+			 tienda = tienda.leerTienda();
+			 vista.getPanelTienda().getTxtnombreTienda().setText(tienda.getNombreTienda());
+			 vista.getPanelTienda().getTxttipoTienda().setText(tienda.getTipoTienda());
+			 vista.getPanelTienda().getTxtNITtienda().setText(Integer.toString(tienda.getNITtienda()));
+			 vista.getPanelTienda().getTxtciudad().setText(tienda.getCiudad());
+			 vista.getPanelTienda().getTxtIVA().setText(Integer.toString(tienda.getIVA())); 
+			 vista.getPanelTienda().getTxttasaInteres().setText(Integer.toString(tienda.getTasaInteres()));
+			 vista.getPanelTienda().getTxtnombreBanco().setText(tienda.getNombreBanco());
+			 vista.getPanelTienda().getTxtnumCuentaCorriente().setText(Integer.toString(tienda.getNumCuentaCorriente()));
+			 vista.getPanelTienda().getTxtgerente().setText (tienda.getGerente());
+		}
+		
 		if (comando.equals(vista.ACTUALIZAR_TIENDA)){
 			String nombre = vista.getPanelTienda().getTxtnombreTienda().getText();
 			tienda.setNombreTienda(nombre);
@@ -519,9 +566,47 @@ public class Controlador implements ActionListener {
 				vista.getPanelProveedores().setVisible(false);
 				vista.getPanelVerifica().setVisible(false);
 				vista.getPanelventa().setVisible(true);
+				vista.setSize(1500, 500);
+
 	        	vista.setVisible(true);
-		}}  
+		}
+	}  
+	
+	if(comando.equals(vista.BUSCAR_PRODUCTO)){
+		int NITproducto = Integer.parseInt(vista.getPanelventa().getTxtCodigoProducto().getText());
+	    producto = new Producto(NITproducto,"", 0, 0, 0);
+	    mundo = new Mundo(producto);
+	    producto = mundo.getProducto().leerProducto(producto);
+	    vista.getPanelventa().getTxtNombreProducto().setText(producto.getNombreProducto());
+	    vista.getPanelventa().getTxtValorUnitario().setText(Integer.toString(producto.getPrecioVentaProducto()));
 	}
+	
+	if(comando.equals(vista.CANTIDAD_PRODUCTO)){
+		int cantidad = Integer.parseInt(vista.getPanelventa().getTxtCantidad().getText());
+		int valorUnitario = Integer.parseInt(vista.getPanelventa().getTxtValorUnitario().getText());
+		vista.getPanelventa().getTxtValorTotal().setText(Integer.toString(cantidad*valorUnitario));
+	}
+	
+    if(comando.equals(vista.TOTALIZAR)){
+    	int totalventa = Integer.parseInt(vista.getPanelventa().getTxtTotalVenta().getText());
+    	tienda = new Tienda();
+    	mundo = new Mundo(tienda);
+    	tienda = mundo.getTienda().leerTienda();
+    	vista.getPanelventa().getTxtIVA().setText(Integer.toString(tienda.getIVA()));
+    	vista.getPanelventa().getTxtValorconIva().setText(Integer.toString(tienda.getIVA()*totalventa));	
+    }
+    
+    if(comando.equals(vista.EFECTIVO_PRODUCTO)){
+    	int codigoVenta = Integer.parseInt(vista.getPanelventa().getTxtCodigoVenta().getText());
+    	int cedulaCliente = Integer.parseInt(vista.getPanelventa().getTxtIDcliente().getText());
+    	int valorTotalventa = Integer.parseInt(vista.getPanelventa().getTxtTotalVenta().getText());
+    	int valorIVA = Integer.parseInt(vista.getPanelventa().getTxtIVA().getText());
+    	int valorTotalmasIVA = Integer.parseInt(vista.getPanelventa().getTxtValorconIva().getText());
+    	venta = new Venta(codigoVenta, cedulaCliente, valorTotalventa, valorIVA, valorTotalmasIVA);
+    	mundo = new Mundo(venta);  
+    	mundo.getVenta().agregarVenta(codigoVenta, cedulaCliente, valorTotalventa, valorIVA, valorTotalmasIVA);
+    }
+    }
 	
 	
 	
