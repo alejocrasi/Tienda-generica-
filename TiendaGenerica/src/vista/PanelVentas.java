@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class PanelVentas extends JPanel {
 	
@@ -40,14 +41,15 @@ public class PanelVentas extends JPanel {
 	
 	private JButton btnProducto;
 	private JButton btnEliminarP;
+	private JButton btnAgregar;
 	private JButton btnTotalizar;
 	private JButton btnEfectivo;
 	private JButton btnCuotas;
 
 	private JTable tabla;
-	
-	private String [][]datos= {{"", "", "","",""}};
-	private String []cabe = {"Nit", "Producto", "valor unitario","cantidad","valor total"};
+	private DefaultTableModel model = new DefaultTableModel();
+	//private String [][]datos= {{"", "", "","",""}};
+	//private String []cabe = {"Nit", "Producto", "valor unitario","cantidad","valor total"};
 	
 	private Ventana vista;
 	
@@ -64,6 +66,9 @@ public class PanelVentas extends JPanel {
 		
 		btnEliminarP = new JButton("eliminar producto");
 		btnEliminarP.setActionCommand(vista.ELIMINAR_PRODUCTO);
+		
+		btnAgregar = new JButton("agregar producto");
+		btnAgregar.setActionCommand(vista.AGREGAR_PRODUCTOS);
 		
 		btnEfectivo = new JButton("Efectivo");
 		btnEfectivo.setActionCommand(vista.EFECTIVO_PRODUCTO);
@@ -93,7 +98,7 @@ public class PanelVentas extends JPanel {
 		lbValorTotal = new JLabel("valor Total:");
 		lbCodigoVenta = new JLabel("Codigo por venta:");
 		lbIVA = new JLabel ("IVA:");
-		lbValorconIva = new JLabel("valor con IVA:");
+		lbValorconIva = new JLabel("Total con IVA:");
 		lbTotalVenta = new JLabel ("total venta:");
 		lbMetodoPago = new JLabel ("Metodo de pago:");
 		
@@ -145,25 +150,25 @@ public class PanelVentas extends JPanel {
 		TxtCodigoVenta.setBounds(610, 20, 200, 20);
 		
 		add(lbIVA);
-		lbIVA.setBounds(500, 50, 120, 20); 
+		lbIVA.setBounds(500, 80, 120, 20); 
 		add(TxtIVA);
-		TxtIVA.setBounds(610, 50, 120, 20);
+		TxtIVA.setBounds(610, 80, 120, 20);
 		TxtIVA.setEnabled(false);
 		
 		add(lbValorconIva);
-		lbValorconIva.setBounds(500, 80, 120, 20);
+		lbValorconIva.setBounds(500, 110, 120, 20);
 		add(TxtValorconIva);
-		TxtValorconIva.setBounds(610, 80, 120, 20);
+		TxtValorconIva.setBounds(610, 110, 120, 20);
 		TxtValorconIva.setEnabled(false);
 		
 		add(lbTotalVenta);
-		lbTotalVenta.setBounds(500, 110, 120, 20);
+		lbTotalVenta.setBounds(500, 50, 120, 20);
 		add(TxtTotalVenta);
-		TxtTotalVenta.setBounds(610, 110, 120, 20);
+		TxtTotalVenta.setBounds(610, 50, 120, 20);
 		TxtTotalVenta.setEnabled(false);
 		
 		add(lbMetodoPago);
-		lbMetodoPago.setBounds(500, 340, 120, 20);
+		lbMetodoPago.setBounds(520, 340, 120, 20);
 		
 		
 		
@@ -171,18 +176,25 @@ public class PanelVentas extends JPanel {
 		btnProducto.setBounds(50,230, 180, 40);
 		add(btnEliminarP);
 		btnEliminarP.setBounds(250, 230, 180, 40);
+		add(btnAgregar);
+		btnAgregar.setBounds(150, 280, 180, 40);
 		add(btnEfectivo);
 		btnEfectivo.setBounds(620, 340, 120, 40);
 		add(btnCuotas);
 		btnCuotas.setBounds(760, 340, 120, 40);
 		
-		tabla = new JTable(datos,cabe);
+		tabla = new JTable(model);
+		model.addColumn("Codigo");
+		model.addColumn("Producto");
+		model.addColumn("valor unitario");
+		model.addColumn("cantidad");
+		model.addColumn("valor total");
 		JScrollPane tab = new JScrollPane(tabla);
-		tab.setBounds(440,187,400, 150);
+		tab.setBounds(430,187,480, 150);
 		add(tab);
 		
 		add(btnTotalizar);
-		btnTotalizar.setBounds(640, 140, 120, 40);
+		btnTotalizar.setBounds(620, 140, 120, 40);
 		
 		
 	}
@@ -267,20 +279,12 @@ public class PanelVentas extends JPanel {
 		this.tabla = tabla;
 	}
 
-	public String[][] getDatos() {
-		return datos;
+	public DefaultTableModel getModel() {
+		return model;
 	}
 
-	public void setDatos(String[][] datos) {
-		this.datos = datos;
-	}
-
-	public String[] getCabe() {
-		return cabe;
-	}
-
-	public void setCabe(String[] cabe) {
-		this.cabe = cabe;
+	public void setModel(DefaultTableModel model) {
+		this.model = model;
 	}
 
 	public Ventana getVista() {
@@ -443,6 +447,15 @@ public class PanelVentas extends JPanel {
 		this.btnCuotas = btnCuotas;
 	}
 
+	public JButton getBtnAgregar() {
+		return btnAgregar;
+	}
+
+	public void setBtnAgregar(JButton btnAgregar) {
+		this.btnAgregar = btnAgregar;
+	}
+
     
 
 }
+

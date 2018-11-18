@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import modelo.Cliente;
 import modelo.DetalleCompras;
@@ -88,21 +89,7 @@ public class Controlador implements ActionListener {
         	
             
         }
-	if (e.getSource()==vista.getVender()) {
-		
-	    vista.add(vista.getPanelventa());
-		vista.getPanelventa().setVisible(true);
-		vista.getPanelClientes().setVisible(false);
-		vista.getPanelTienda().setVisible(false);
-		vista.getPanelProductos().setVisible(false);
-		vista.getPanelProveedores().setVisible(false);
-		vista.getPanelVerifica().setVisible(false);
-		vista.setSize(1500, 500);
-		vista.setVisible(true);
-    	
-    	
-        
-    }
+	
 		if (e.getSource()==vista.getCliente()) {
 			
 			vista.add(vista.getPanelClientes());
@@ -212,8 +199,6 @@ public class Controlador implements ActionListener {
 			
 		}
 		if (comando.equals(vista.ACTUALIZAR_TIENDA)){
-			
-
 			String nombre = vista.getPanelTienda().getTxtnombreTienda().getText();
 			tienda.setNombreTienda(nombre);
 			String tipo = vista.getPanelTienda().getTxttipoTienda().getText();
@@ -222,7 +207,7 @@ public class Controlador implements ActionListener {
 			tienda.setNITtienda(nittienda);
 			String city = vista.getPanelTienda().getTxtciudad().getText();
 			tienda.setCiudad(city);
-			int iva = Integer.parseInt(vista.getPanelTienda().getTxtIVA().getText());
+			float iva = Float.parseFloat(vista.getPanelTienda().getTxtIVA().getText());
 			tienda.setIVA(iva); 
 			int tasainteres = Integer.parseInt(vista.getPanelTienda().getTxttasaInteres().getText());
 			tienda.setTasaInteres(tasainteres);
@@ -237,41 +222,18 @@ public class Controlador implements ActionListener {
 		}
 		
 		if(comando.equals(vista.LEER_TIENDA)){
-			System.out.println("leer");
+			
 			 tienda = tienda.leerTienda();
 			 vista.getPanelTienda().getTxtnombreTienda().setText(tienda.getNombreTienda());
 			 vista.getPanelTienda().getTxttipoTienda().setText(tienda.getTipoTienda());
 			 vista.getPanelTienda().getTxtNITtienda().setText(Integer.toString(tienda.getNITtienda()));
 			 vista.getPanelTienda().getTxtciudad().setText(tienda.getCiudad());
-			 vista.getPanelTienda().getTxtIVA().setText(Integer.toString(tienda.getIVA())); 
+			 vista.getPanelTienda().getTxtIVA().setText(Float.toString(tienda.getIVA())); 
 			 vista.getPanelTienda().getTxttasaInteres().setText(Integer.toString(tienda.getTasaInteres()));
 			 vista.getPanelTienda().getTxtnombreBanco().setText(tienda.getNombreBanco());
 			 vista.getPanelTienda().getTxtnumCuentaCorriente().setText(Integer.toString(tienda.getNumCuentaCorriente()));
 			 vista.getPanelTienda().getTxtgerente().setText (tienda.getGerente());
 		}
-		
-		if (comando.equals(vista.ACTUALIZAR_TIENDA)){
-			String nombre = vista.getPanelTienda().getTxtnombreTienda().getText();
-			tienda.setNombreTienda(nombre);
-			String tipo = vista.getPanelTienda().getTxttipoTienda().getText();
-			tienda.setTipoTienda(tipo);
-			int nittienda = Integer.parseInt(vista.getPanelTienda().getTxtNITtienda().getText());
-			tienda.setNITtienda(nittienda);
-			String city = vista.getPanelTienda().getTxtciudad().getText();
-			tienda.setCiudad(city);
-			int iva = Integer.parseInt(vista.getPanelTienda().getTxtIVA().getText());
-			tienda.setIVA(iva); 
-			int tasainteres = Integer.parseInt(vista.getPanelTienda().getTxttasaInteres().getText());
-			tienda.setTasaInteres(tasainteres);
-			String nomBanco = vista.getPanelTienda().getTxtnombreBanco().getText();
-			tienda.setNombreBanco(nomBanco);
-			int numCuenta = Integer.parseInt(vista.getPanelTienda().getTxtnumCuentaCorriente().getText());
-			tienda.setNumCuentaCorriente(numCuenta);
-			String gerente = vista.getPanelTienda().getTxtgerente().getText();
-			tienda.setGerente(gerente);
-			
-			mensaje(tienda.TiendaActual());}
-		
 		
 		
 		if (comando.equals(vista.AGREGAR_CLIENTE)){
@@ -426,9 +388,6 @@ public class Controlador implements ActionListener {
 			vista.getPanelProveedores().getTxttelefono().setText(Integer.toString(proveedor.getTelefono()));
 			vista.getPanelProveedores().getTxtciudad().setText(proveedor.getCiudad());
 	   }
-	   
-	   
-	   
 	  
 	  if(comando.equals(vista.AGREGAR_PRODUCTO)){
 		int codigoProducto;
@@ -552,12 +511,12 @@ public class Controlador implements ActionListener {
 	
 	if(comando.equals(vista.BUSCAR_CLIENTE)){
 		int IDcliente = Integer.parseInt(vista.getPanelVerifica().getTxtCliente().getText());
-		Cliente cliente = new Cliente("", IDcliente, "", 0, "");
+	    cliente = new Cliente("", IDcliente, "", 0, "");
 		mundo = new Mundo(cliente);
 		cliente = mundo.getCliente().leerCliente(cliente);
-		vista.getPanelventa().getTxtCliente().setText(Integer.toString(cliente.getCedula()));
-		if (cliente == null){
-			JOptionPane.showMessageDialog(null, "Cliente no encontrado");}
+		vista.getPanelventa().getTxtCliente().setText(cliente.getNombre());
+		vista.getPanelventa().getTxtIDcliente().setText(Integer.toString(cliente.getCedula()));
+		if (cliente == null){JOptionPane.showMessageDialog(null, "Cliente no encontrado");}
 		else{
 				vista.add(vista.getPanelventa());
 				vista.getPanelClientes().setVisible(false);
@@ -566,11 +525,8 @@ public class Controlador implements ActionListener {
 				vista.getPanelProveedores().setVisible(false);
 				vista.getPanelVerifica().setVisible(false);
 				vista.getPanelventa().setVisible(true);
-				vista.setSize(1500, 500);
-
 	        	vista.setVisible(true);
-		}
-	}  
+		}}
 	
 	if(comando.equals(vista.BUSCAR_PRODUCTO)){
 		int NITproducto = Integer.parseInt(vista.getPanelventa().getTxtCodigoProducto().getText());
@@ -588,26 +544,73 @@ public class Controlador implements ActionListener {
 	}
 	
     if(comando.equals(vista.TOTALIZAR)){
-    	int totalventa = Integer.parseInt(vista.getPanelventa().getTxtTotalVenta().getText());
+    	int totalventa = 0;
     	tienda = new Tienda();
     	mundo = new Mundo(tienda);
+    	
+    	DefaultTableModel model = (DefaultTableModel) vista.getPanelventa().getModel();
+    	int nRow = model.getRowCount(), nCol = model.getColumnCount();
+    	String [][] tabla = new String[nRow][nCol];
+    	for (int i = 0; i < nRow; i++) {
+    		tabla [i][4]=model.getValueAt(i,4).toString();
+    		totalventa = totalventa + Integer.parseInt(tabla[i][4]);}
     	tienda = mundo.getTienda().leerTienda();
-    	vista.getPanelventa().getTxtIVA().setText(Integer.toString(tienda.getIVA()));
-    	vista.getPanelventa().getTxtValorconIva().setText(Integer.toString(tienda.getIVA()*totalventa));	
-    }
+    	float iva = tienda.getIVA()/100;
+    	float Ventaiva = totalventa * (1+iva);
+    	vista.getPanelventa().getTxtIVA().setText(Float.toString(tienda.getIVA()));
+    	vista.getPanelventa().getTxtValorconIva().setText(Float.toString(Ventaiva));
+    	vista.getPanelventa().getTxtTotalVenta().setText(Integer.toString(totalventa));
+
+	}
+
+
     
     if(comando.equals(vista.EFECTIVO_PRODUCTO)){
-    	int codigoVenta = Integer.parseInt(vista.getPanelventa().getTxtCodigoVenta().getText());
     	int cedulaCliente = Integer.parseInt(vista.getPanelventa().getTxtIDcliente().getText());
     	int valorTotalventa = Integer.parseInt(vista.getPanelventa().getTxtTotalVenta().getText());
-    	int valorIVA = Integer.parseInt(vista.getPanelventa().getTxtIVA().getText());
-    	int valorTotalmasIVA = Integer.parseInt(vista.getPanelventa().getTxtValorconIva().getText());
-    	venta = new Venta(codigoVenta, cedulaCliente, valorTotalventa, valorIVA, valorTotalmasIVA);
+    	float valorIVA = Float.parseFloat(vista.getPanelventa().getTxtIVA().getText());
+        float valorTotalmasIVA = Float.parseFloat(vista.getPanelventa().getTxtValorconIva().getText());
+        
+        DefaultTableModel model = (DefaultTableModel) vista.getPanelventa().getModel();
+    	int nRow = model.getRowCount(), nCol = model.getColumnCount();
+    	String [][] tabla = new String[nRow][nCol];
+    	for (int i = 0; i < nRow; i++) {
+    		for (int j = 0; j < nCol; j++) {
+    		tabla [i][j]=model.getValueAt(i,j).toString();}}
+    	
+    	for (int i = 0; i < nRow; i++) {
+    		model.removeRow(i);}
+    	
+    	venta = new Venta(1,cedulaCliente, valorTotalventa, valorIVA, valorTotalmasIVA);
     	mundo = new Mundo(venta);  
-    	mundo.getVenta().agregarVenta(codigoVenta, cedulaCliente, valorTotalventa, valorIVA, valorTotalmasIVA);
+    	int codigoVenta = mundo.getVenta().agregarVenta(venta);
+    	vista.getPanelventa().getTxtCodigoVenta().setText(Integer.toString(codigoVenta));
+    	
     }
+    if(comando.equals(vista.AGREGAR_PRODUCTOS)){
+    	String codigoProducto = vista.getPanelventa().getTxtCodigoProducto().getText();
+    	String nombreProducto =  vista.getPanelventa().getTxtNombreProducto().getText();
+    	String valorUnitario = vista.getPanelventa().getTxtValorUnitario().getText();
+    	String cantidad = vista.getPanelventa().getTxtCantidad().getText();
+    	String valorTotal = vista.getPanelventa().getTxtValorTotal().getText();
+    	String [] lista = {codigoProducto, nombreProducto,valorUnitario, cantidad,valorTotal};
+    	mundo = new Mundo();
+    	//String[][] tabla = mundo.AgregarProductosVenta(lista);
+    	vista.getPanelventa().getModel().addRow(lista);
     }
-	
+    if(comando.equals(vista.ELIMINAR_PRODUCTO)){
+    	String codigoProducto = vista.getPanelventa().getTxtCodigoProducto().getText();
+    	DefaultTableModel model = (DefaultTableModel) vista.getPanelventa().getModel();
+    	int nRow = model.getRowCount(), nCol = model.getColumnCount();
+    	String [][] tabla = new String[nRow][nCol];
+    	for (int i = 0; i < nRow; i++) {
+    		tabla [i][0]=model.getValueAt(i,0).toString();
+    		if(tabla[i][0].equals(codigoProducto)){
+    			vista.getPanelventa().getModel().removeRow(i);}
+    	}	
+    }
+    
+	}
 	
 	
 	

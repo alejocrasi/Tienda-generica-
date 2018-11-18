@@ -19,7 +19,6 @@ import modelo.Venta;
 	public class Persistencia {
 
 
-
 		private String rutaClie = "C:\\data\\cliente.out";
 		private String rutaProve = "C:\\data\\proveedor.out";
 		private String rutaProduc = "C:\\data\\producto.out";
@@ -30,14 +29,13 @@ import modelo.Venta;
 		public Persistencia() {
 			// TODO Auto-generated constructor stub
 		}
-		
 		public void setPropiedades(Tienda tienda){
 			try{
 				prop.setProperty("NombreTienda", tienda.getNombreTienda());
 				prop.setProperty("Tipotienda", tienda.getTipoTienda());
 				prop.setProperty("NitTienda", Integer.toString(tienda.getNITtienda()));
 				prop.setProperty("CiudadTienda", tienda.getCiudad());
-				prop.setProperty("ValorIva", Integer.toString(tienda.getIVA()));
+				prop.setProperty("ValorIva", Float.toString(tienda.getIVA()));
 				prop.setProperty("TasaInteres", Integer.toString(tienda.getTasaInteres()));
 				prop.setProperty("NombreBanco", tienda.getNombreBanco());
 				prop.setProperty("NumeroCuentaCorriente", Integer.toString(tienda.getNumCuentaCorriente()));
@@ -66,7 +64,6 @@ import modelo.Venta;
 		  }
 		return tienda;
 		}
-
 		public String escribirCliente(ArrayList<Cliente> cliente) {
 			String mensaje = "Registro de Cliente Ingresado!";
 			try{ ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(rutaClie));
@@ -88,7 +85,7 @@ import modelo.Venta;
 		        clientes = (ArrayList<Cliente>)in.readObject();
 		        in.close();
 
-			} catch (Exception  e) {
+			} catch (IOException | ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				clientes = null;
@@ -168,7 +165,6 @@ import modelo.Venta;
 				}
 				return venta;
 			}
-		
 		
 		public String getRutaProve() {
 			return rutaProve;

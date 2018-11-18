@@ -4,18 +4,18 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import controlador.Persistencia;
 
 public class Venta implements Serializable{
-	//private  venta  = new ArrayList <Venta>();
-    //private String [] producto = new Venta[venta][4]; 
 	private int Codigoventa;
 	private int Cedulacliente;
 	private int Valortotaldeventa;
-	private int ValordeiVA;
-	private int Valortotaliva;
+	private float ValordeiVA;
+	private float Valortotaliva;
 	private static final long serialVersionUID = 1L;
-	public Venta(int CodigoVenta, int CedulaCliente, int ValorTotaldeVenta,int ValordeIVA,int ValorTotalIva){
+	public Venta(int CodigoVenta, int CedulaCliente, int ValorTotaldeVenta,float ValordeIVA,float ValorTotalIva){
 		Codigoventa=CodigoVenta;
 		Cedulacliente= CedulaCliente;
 		Valortotaldeventa=ValorTotaldeVenta;
@@ -23,23 +23,20 @@ public class Venta implements Serializable{
 		Valortotaliva=ValorTotalIva;
 	}
 
-	public boolean agregarVenta(int CodigoVenta, int Cedulacliente, int ValorTotaldeVenta,int ValordeIVA,int ValorTotalIva){
+	public int agregarVenta(Venta venta){
 		Persistencia persistencia= new Persistencia();
-		ArrayList<Venta> venta = new ArrayList<Venta>(); 
-		
-		boolean agrego = false;
+		ArrayList<Venta> ventas = new ArrayList<Venta>(); 
 		if(new File ("C:\\data\\venta.out").exists()){
-			venta = persistencia.leerVenta();
-			if(buscarVenta(CodigoVenta,venta)==-1){
-				Venta nuevo = new Venta( CodigoVenta, Cedulacliente, ValorTotaldeVenta, ValordeIVA, ValorTotalIva);
-				venta.add(nuevo);
-				persistencia.escribirVenta(venta);
-				agrego = true;}}
-		else{Venta nuevo = new Venta(CodigoVenta, Cedulacliente, ValorTotaldeVenta, ValordeIVA, ValorTotalIva);		
-				venta.add(nuevo);
-				persistencia.escribirVenta(venta);
-				agrego = true;}
-		return agrego;}
+			ventas = persistencia.leerVenta();
+				venta.Codigoventa = ventas.size() + 1;
+				ventas.add(venta);
+				String mensaje = persistencia.escribirVenta(ventas);
+				JOptionPane.showMessageDialog(null, mensaje);}
+		else{	
+				ventas.add(venta);
+				String mensaje = persistencia.escribirVenta(ventas);
+				JOptionPane.showMessageDialog(null, mensaje);}
+		return venta.Codigoventa;}
 
       public int buscarVenta( int CodigoVenta, ArrayList<Venta> ventas){
 	        int indice = -1;
@@ -49,9 +46,6 @@ public class Venta implements Serializable{
 			            indice = i;}}
 	                   return indice;}
 	
-	public boolean agregarProductoVenta(){
-		return false;
-	}
 
 	public int getCodigoventa() {
 		return Codigoventa;
@@ -77,20 +71,21 @@ public class Venta implements Serializable{
 		Valortotaldeventa = valortotaldeventa;
 	}
 
-	public int getValordeiVA() {
+	public float getValordeiVA() {
 		return ValordeiVA;
 	}
 
-	public void setValordeiVA(int valordeiVA) {
+	public void setValordeiVA(float valordeiVA) {
 		ValordeiVA = valordeiVA;
 	}
 
-	public int getValortotaliva() {
+	public float getValortotaliva() {
 		return Valortotaliva;
 	}
 
-	public void setValortotaliva(int valortotaliva) {
+	public void setValortotaliva(float valortotaliva) {
 		Valortotaliva = valortotaliva;
 	}
 	
 }
+

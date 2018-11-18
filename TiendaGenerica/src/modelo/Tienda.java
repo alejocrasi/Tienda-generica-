@@ -13,7 +13,7 @@ public class Tienda implements Serializable {
 	private String tipoTienda;
 	private int  NITTienda;
 	private String ciudad;
-	private int IVA;
+	private float IVA;
 	private int tasaInteres;
 	private String nombreBanco;
 	private int numCuentaCorriente;
@@ -114,12 +114,12 @@ public class Tienda implements Serializable {
 		this.ciudad = ciudad;
 	}
 
-	public int getIVA() {
+	public float getIVA() {
 		return IVA;
 	}
 
-	public void setIVA(int iVA) {
-		IVA = iVA;
+	public void setIVA(float iva2) {
+		IVA = iva2;
 	}
 
 	public int getTasaInteres() {

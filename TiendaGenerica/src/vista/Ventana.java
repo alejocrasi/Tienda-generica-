@@ -69,6 +69,12 @@ public class Ventana extends JFrame {
 	public static final String EFECTIVO_PRODUCTO = "21pp";
 	public static final String CUOTAS_PRODUCTO = "22pp";
 	
+	
+	public static final String AGREGAR_PRODUCTOS ="25pp";
+
+
+	
+	
 
 	
 	public Ventana(Controlador pcontrolador) {
@@ -82,7 +88,7 @@ public class Ventana extends JFrame {
 		
 		  
 		JLabel label = new JLabel();
-		label.setIcon( new ImageIcon("./dato/imagenes/tienda.jpg"));
+		label.setIcon( new ImageIcon("./dato/imagenes/logo.png"));
 		add(label, BorderLayout.WEST);
 		
 		
@@ -111,9 +117,7 @@ public class Ventana extends JFrame {
         tienda=new JMenu("tienda");
         menu.add(tienda);
         
-        vender=new JMenuItem("vender");
-        vender.addActionListener(controlador);
-        ventas.add(vender);
+        
         
         comprar=new JMenuItem("comprar");
         comprar.addActionListener(controlador);
